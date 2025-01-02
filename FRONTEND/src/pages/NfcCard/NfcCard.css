@@ -1,0 +1,440 @@
+@import url('https://fonts.googleapis.com/css2?family=MuseoModerno:ital,wght@0,100..900;1,100..900&display=swap');
+
+
+.nfc-card-container {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    background-color: white;
+  }
+  
+  .nfc-card-editor {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+  }
+  
+  .nfc-card-preview {
+    width: 550px;
+    height: 350px;
+    margin-top: 80px;
+    border-radius: 30px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    position: relative;
+  }
+  
+  .card-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+    padding: 20px;
+  }
+
+  .card-content .wifi-icon {
+    position: relative;
+    left: 0;
+    top: 0;
+    background-color: white;
+  }
+ 
+  .card-content .back-side {
+    color: white;
+    font-size: 3.5rem;
+    text-align: center;
+    font-family: "MuseoModerno", sans-serif;
+  }
+
+  /* .card-content h2 {
+    position: relative;
+    top: 60px;
+    left: 30px;
+  }
+
+  .card-content h4 {
+    position: relative;
+    top: 60px;
+    left: 30px;
+  }
+
+  .card-content p {
+    position: relative;
+    top: 55px;
+    left: 30px;
+  } */
+  
+  .card-logo {
+    position: absolute;
+    top: 20px;
+    left: 5px;
+    /* right: 30px; */
+    /* bottom: 20px; */
+    display: flex;
+    width: 300px;
+    height: 100px;
+    object-fit: contain; 
+  }
+  
+  /* .nfc-qr {
+    display: none;
+    width: 100px;
+    height: 100px;
+    position: relative;
+    top: 70;
+    bottom: 50;
+    border: 2px solid #000;
+    border-radius: 8px;
+    
+    background-color: blueviolet;
+  } */
+  
+  /* .nfc-symbol {
+    font-size: 1.5rem;
+  } */
+  
+  .nfc-card-controls {
+    position: relative;
+    width: 700px;
+    padding: 0 20px 10px 20px;
+    border: 1px solid rgb(161, 159, 159);
+    border-radius: 10px;
+    
+  }
+
+  .nfc-card-controls .add {
+    position: absolute;
+    bottom: 85px;
+    right: 632px;
+    margin-right: -35px;
+    padding: 10px;
+    font-size: 1rem;
+    cursor: pointer;
+    border-radius: 10px;
+    color: white;
+    background-color: #5cbdb9;
+    border: none;
+  }
+  
+  .toggle-side button {
+    width: 300px;
+    height: 50px;
+    background: #6e6e6e;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin: 10px;
+    cursor: pointer;
+    border-radius: 20px;
+    font-size: 1.2rem;
+  }
+
+  .toggle-side button:hover {
+    opacity: 0.85;
+  }
+  
+  .toggle-side button.active {
+    background: #5cbdb9;
+  }
+  
+  .color-options {
+    display: flex;
+    margin-top: 15px;
+  }
+  
+  .color-option {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 20px;
+    cursor: pointer;
+    border: 2px solid gray;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
+  }
+  
+  input[type="text"] {
+    width: 100%;
+    height: 40px;
+    font-size: 1.1rem;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  input[type="file"] {
+    height: 60px;
+    padding: 0px;
+    font-size: 1.1rem;
+    /* margin-top: 5px; */
+  }
+  
+  label {
+    display: block;
+    margin: 8px 0 5px;
+    font-size: 1.2rem;
+    font-weight: bold;
+  }
+
+  .card-item-counter {
+    /* position: absolute; */
+    bottom: 15px;
+    right: 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 6px;
+    border-radius: 50px;
+    background-color: white;
+    cursor: pointer;
+  }
+
+  .submit-details-btn1 {
+    height: 50px;
+    width: 100%;
+    display: flex;
+    margin-top: 30px;
+    background: #333;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 20px;
+    font-size: 1.3rem;
+    justify-content: center;
+  }
+
+  .submit-details-btn1:hover {
+    background-color: #5cbdb9;
+    transition: 0.3s;
+    /* transform: scale(1.1) */
+  }
+
+  /* Responsiveness */
+  @media (max-width: 1200px) {
+    .nfc-card-preview {
+        max-width: 500px;
+    }
+
+    .nfc-card-controls {
+        max-width: 600px;
+    }
+}
+
+@media (max-width: 992px) {
+    .nfc-card-editor {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        width: 100%;
+        align-items: center;
+        padding-top: 10px; 
+    }
+
+    .nfc-card-preview, .nfc-card-controls {
+        width: 100%;
+        
+    }
+
+    .nfc-card-preview {
+        margin-top: 0;
+    }
+
+    .nfc-card-controls {
+      margin-top: 40px;
+    }
+
+    .toggle-side button {
+        max-width: 250px;
+    }
+}
+
+@media (max-width: 768px) {
+    .nfc-card-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .nfc-card-editor {
+        flex-direction: column;
+    }
+
+    .nfc-card-preview, .nfc-card-controls {
+        width: 100%;
+    }
+
+    .nfc-card-preview {
+        max-width: 500px;
+    }
+
+    .toggle-side button {
+        max-width: 200px;
+    }
+
+    .submit-details-btn1 {
+        font-size: 1.1rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .nfc-card-preview {
+        max-width: 300px;
+        max-height: 300px
+    }
+
+    .nfc-card-controls {
+        max-width: 400px;
+    }
+
+    .toggle-side button {
+        max-width: 140px;
+        font-size: 1rem;
+    }
+
+    .submit-details-btn1 {
+        font-size: 1rem;
+    }
+}
+
+/* .qr-code-container img {
+  width: 30px;
+} */
+
+.qr-code-container {
+  position: absolute;
+  bottom: 25px;
+  right: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 120px; /* Adjust size as needed */
+  height: 110px;
+  background-color: #fff; /* Background color for QR container */
+  border: 2px solid #000; /* Border color */
+  border-radius: 10px; /* Rounded corners for the container */
+  overflow: hidden; /* Ensures the QR code doesn't overflow the container */
+}
+
+.qr-code-container .qr-code-image {
+  width: 100%; /* Make the QR code image fit the container */
+  height: 100%;
+  object-fit: cover; /* Ensures the image doesn't stretch */
+}
+
+.card-logo {
+  position: absolute;
+  top: 2px;
+  left: 40px;
+  width: 160px;
+  height: 150px;
+  object-fit: contain;
+}
+
+/* .card-content {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-end;
+  padding: 10px;
+  height: 100%; 
+  box-sizing: border-box;
+} */
+
+/* .card-content h2,
+.card-content h4,
+.card-content p {
+  margin: 0;
+  padding: 2px 0;
+}
+
+.card-content h2 {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.card-content h4 {
+  font-size: 1rem;
+  font-weight: normal;
+}
+
+.card-content p {
+  font-size: 0.9rem;
+  font-weight: lighter;
+} */
+
+
+.title-sub-det {
+  position: absolute; /* Allows precise positioning within the card */
+  bottom: 10px; /* Distance from the bottom of the card */
+  left: 40px; /* Distance from the left side of the card */
+  display: flex;
+  flex-direction: column; /* Stacks the elements vertically */
+  align-items: flex-start; /* Aligns text to the left */
+  padding: 3px; /* Adds some spacing inside the container */
+  box-sizing: border-box; /* Ensures padding is included in the size */
+  /* max-width: calc(100% - 20px);  */
+}
+
+.title-sub-det h2,
+.title-sub-det h4,
+.title-sub-det p {
+  margin: 0; 
+  padding: 0; 
+}
+
+.title-sub-det h2 {
+  font-size: 1.8rem; /* Adjusts the size for prominence */
+  font-weight: bold;
+}
+
+.title-sub-det h4 {
+  font-size: 1.5rem; /* Adjusts the size for sub-title */
+  font-weight: normal;
+}
+
+.title-sub-det p {
+  font-size: 1.5rem; /* Adjusts the size for additional details */
+  font-weight: lighter;
+}
+
+.nfc-symbol {
+  position: absolute; /* Allows precise positioning within the card */
+  top: 35px; /* Distance from the top of the card */
+  right: 52px; /* Distance from the right side of the card */
+  width: 40px; /* Adjust the size of the NFC symbol */
+  height: 40px; /* Ensures the symbol is square */
+  object-fit: contain; /* Maintains aspect ratio */
+  z-index: 2; /* Ensures it appears above other elements */
+}
+
+.upload-logo-container {
+  /* margin: 10px 0; */
+  /* background-color: rebeccapurple; */
+  margin-top: 20px;
+  width: 100px;
+  
+}
+
+.upload-logo-label {
+  display: block;
+  font-size: 14px;
+  /* margin-bottom: 5px; */
+  color: #333;
+  background-color: #ccc;
+  cursor: pointer;
+  padding: 10px 10px;
+  border-radius: 40px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+.upload-logo-label:hover {
+  background-color: #f9f6f6;
+  transition: 0.3s;
+}
+
+.upload-logo-input {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+}

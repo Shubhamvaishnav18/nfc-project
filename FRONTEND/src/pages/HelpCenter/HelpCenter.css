@@ -1,0 +1,110 @@
+.help-center-container {
+    padding: 50px;
+    max-width: 1000px;
+    margin: 60px auto;
+    background-color: #ffffff;
+    border-radius: 15px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+    font-family: 'Open Sans', sans-serif;
+    transition: all 0.3s ease-in-out;
+  }
+  
+  .help-center-container:hover {
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.18);
+  }
+  
+  .help-center-container h1 {
+    font-size: 3rem;
+    color: #000000;
+    text-align: center;
+    margin-bottom: 35px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    font-weight: 700;
+    text-decoration: underline;
+  }
+  
+  .help-center-container p {
+    font-size: 1.3rem;
+    color: #333333;
+    line-height: 1.9;
+    margin-bottom: 30px;
+  }
+  
+  .faq-section h2 {
+    font-size: 2.4rem;
+    color: #000000;
+    margin-bottom: 25px;
+    border-bottom: 3px solid #555555;
+    padding-bottom: 12px;
+    font-weight: 600;
+  }
+  
+  .faq-item h3 {
+    font-size: 1.8rem;
+    color: #111111;
+    margin-top: 18px;
+    margin-bottom: 12px;
+    font-weight: 500;
+    letter-spacing: 0.8px;
+  }
+  
+  .faq-item p {
+    font-size: 1.2rem;
+    color: #333333;
+    margin-bottom: 22px;
+    line-height: 1.7;
+  }
+  
+  .contact-support {
+    margin-top: 45px;
+  }
+  
+  .contact-support h2 {
+    font-size: 2.4rem;
+    color: #000000;
+    margin-bottom: 25px;
+    border-bottom: 3px solid #27ae60;
+    padding-bottom: 12px;
+    font-weight: 600;
+  }
+  
+  .contact-support p {
+    font-size: 1.3rem;
+    color: #333333;
+    line-height: 1.9;
+  }
+  
+  .contact-support a {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s;
+  }
+  
+  .contact-support a:hover {
+    color: #0056b3;
+    text-decoration: underline;
+  }
+  
+  @media (max-width: 768px) {
+    .help-center-container {
+      padding: 25px;
+    }
+  
+    .help-center-container h1 {
+      font-size: 2.4rem;
+    }
+  
+    .help-center-container p, 
+    .faq-item p, 
+    .contact-support p {
+      font-size: 1.1rem;
+    }
+  
+    .faq-section h2, 
+    .contact-support h2 {
+      font-size: 2rem;
+    }
+  }
+  

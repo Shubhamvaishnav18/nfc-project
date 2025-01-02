@@ -1,0 +1,199 @@
+.hero-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 50px 100px;
+  background: url('/homepage.png') no-repeat;
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+}
+
+.hero-content {
+  max-width: 50%;
+}
+
+ .hero-content h1 {
+  font-size: 3.7rem;
+  color: white;
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+.hero-content p {
+  font-size: 1.3rem;
+  color: white;
+  margin-bottom: 30px;
+}
+
+.get-started-btn {
+  padding: 10px 16px;
+  background-color: #5cbdb9;
+  color: white;
+  border: none;
+  font-size: 1.4rem;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+
+.get-started-btn:hover {
+  background-color: #333;
+    transition: 0.3s;
+    transform: scale(1.1)
+}
+
+.hero-image img {
+  max-width: 100%;
+  height: auto;
+}
+
+.clients-section {
+  padding: 50px;
+  text-align: center;
+}
+
+.clients-section h2 {
+  font-size: 2.5rem;
+  color: #333;
+  margin-bottom: 40px;
+}
+
+.client-slider {
+  width: 100%;
+  overflow: hidden;
+}
+
+.logos-container {
+  display: flex;
+  gap: 50px;
+  animation: slide 10s linear infinite;
+}
+
+.logos-container img {
+  max-width: 100px;
+  height: auto;
+  object-fit: contain;
+}
+
+@keyframes slide {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+/* Media Queries for Responsiveness */
+
+/* For tablets (max-width: 1024px) */
+@media (max-width: 1024px) {
+  .hero-section {
+      padding: 30px 50px;
+  }
+
+  .hero-content h1 {
+      font-size: 3rem;
+  }
+
+  .hero-content p {
+      font-size: 1.2rem;
+  }
+
+  .get-started-btn {
+      font-size: 1.2rem;
+      padding: 10px 14px;
+  }
+
+  .hero-image img {
+      max-width: 80%;
+  }
+}
+
+/* For mobile devices (max-width: 768px) */
+@media (max-width: 768px) {
+  .hero-section {
+      flex-direction: column;
+      align-items: center;
+      padding: 20px;
+      height: auto;
+  }
+
+  .hero-content {
+      max-width: 100%;
+      text-align: start;
+  }
+
+  .hero-content h1 {
+      font-size: 2rem;
+      text-align: start;
+  }
+
+  .hero-content p {
+      font-size: 1rem;
+  }
+
+  .get-started-btn {
+      font-size: 1rem;
+      padding: 10px 14px;
+  }
+
+  .hero-image {
+      margin-top: 10px;
+      max-width: 80%;
+  }
+
+  .clients-section h2 {
+      font-size: 2rem;
+  }
+}
+
+/* For smaller mobile devices (max-width: 480px) */
+@media (max-width: 480px) {
+  .hero-section {
+      flex-direction: column;
+      align-items: start;
+      padding: 15px;
+      height: auto;
+      background-size: cover;
+      background-position: center;
+  }
+
+  .hero-content {
+      max-width: 100%;
+      text-align: start;
+  }
+
+  .hero-content h1 {
+      font-size: 1.6rem;
+  }
+
+  .hero-content p {
+      font-size: 0.7rem;
+  }
+
+  .get-started-btn {
+      font-size: 0.7rem;
+      padding: 8px 12px;
+  }
+
+  .hero-image {
+      margin-top: 20px;
+      max-width: 100%;
+  }
+
+  .hero-image img {
+      max-width: 100%;
+      height: auto;
+      object-fit: contain; /* Ensures the image is fully visible without cropping */
+  }
+
+  .clients-section h2 {
+      font-size: 1.8rem;
+  }
+
+  .logos-container img {
+      max-width: 80px;
+  }
+}

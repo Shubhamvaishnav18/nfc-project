@@ -1,0 +1,59 @@
+.slidebar {
+  top: -100px;
+  left: 0;
+  height: auto;
+  width: 100%;
+  background-color: #5cbdb9;
+  color: #fff;
+  padding: 5px 25px;
+  text-align: center;
+  z-index: 1000;
+  animation: slideIn 1s ease-out forwards;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  overflow: hidden; 
+}
+
+.slidebar .heading {
+  font-size: 1.25rem;
+  margin: 0;
+  font-weight: bold;
+  display: inline-block;
+  white-space: nowrap; 
+  animation: moveLeft 15s linear infinite; 
+}
+
+@keyframes moveLeft {
+  0% {
+    transform: translateX(190%); 
+  }
+  100% {
+    transform: translateX(-200%); 
+  }
+}
+
+@media (max-width: 1024px) {
+  .slidebar {
+    padding: 8px 16px;
+  }
+  .slidebar .heading {
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .slidebar {
+    padding: 6px 12px;
+  }
+  .slidebar .heading {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .slidebar {
+    padding: 4px 10px;
+  }
+  .slidebar .heading {
+    font-size: 0.9rem;
+  }
+}

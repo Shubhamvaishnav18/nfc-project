@@ -1,0 +1,45 @@
+.metal-item {
+    width: 100%;
+    margin: auto;
+    border-radius: 15px;
+    box-shadow: 0px 0px 6px #000000;
+    transition: 0.3s;
+    animation: fadeIn 1s;
+}
+
+.metal-item-image {
+    width: 100%;
+    border-radius: 15px 15px 0px 0px;
+}
+
+.metal-item-info P {
+    color: #333;
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.metal-item-info {
+    padding: 10px;
+}
+
+.metal-item-info button {
+    padding: 10px 20px;
+    margin-top: 10px;
+    color: white;
+    background-color: #1c1c1c;
+    border: none;
+    font-size: 1rem;
+    font-weight: 500;
+    border-radius: 5px;
+}
+
+.metal-item-info button:hover {
+    cursor: pointer;
+    background-color: #5cbdb9;
+    transition: 0.3s;
+    transform: scale(1.1)
+}
+
+.metal-item-img-container {
+    position: relative;
+}
