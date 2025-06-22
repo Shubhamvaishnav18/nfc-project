@@ -1,147 +1,247 @@
 import { createContext, useEffect, useState } from "react";
 import { card_list } from "../assets/assets";
 import { custom_card_list } from "../assets/assets";
+import axios from 'axios';
 
 export const StoreContext = createContext(null);
 
 const StoreContextProvider = (props) => {
 
-    const [cartItem, setCartItem] = useState({});
-    const url = "http://localhost:4000";
-    const [token,setToken] = useState("");
+  const [cartItem, setCartItem] = useState({}); //for all products
+  const [cartItems, setCartItems] = useState([]); //for custom card
+  const url = "http://localhost:4000";
+  const [token, setToken] = useState("");
 
-    //1 const addToCart = async (itemId) => {
-    //     if (!cartItem[itemId]) {
-    //         setCartItem((prev) => ({ ...prev, [itemId]: 1 }))
-    //     }
-    //     else {
-    //         setCartItem((prev) => ({ ...prev, [itemId]: prev[itemId] + 1 }))
-    //     }
-    // }
+  //  for custom card design
+  const addItemToCart = async (item) => {
+    if (!item) {
+      console.error("Item is invalid");
+      return;
+    }
 
-    
-    // const removeFromCart = async (itemId) => {
-    //     setCartItem((prev) => ({ ...prev, [itemId]: prev[itemId] - 1 }))
-    // }
+    // Find if the item already exists in the cart by _id
+    const existingItemIndex = cartItems.findIndex(cartItem => cartItem._id === item._id);
 
-      const addToCart = async (itemId) => {
-      
-      const isCardListItem = card_list.some((product) => product._id === itemId);
-      const isCustomCardListItem = custom_card_list.some((product) => product._id === itemId);
-  
-      if (isCardListItem) {
-          
-          if (!cartItem[itemId]) {
-              setCartItem((prev) => ({ ...prev, [itemId]: 1 }));
-          } else {
-              setCartItem((prev) => ({ ...prev, [itemId]: prev[itemId] + 1 }));
-          }
-      } else if (isCustomCardListItem) {
-        
-        if (!cartItem[itemId]) {
-          setCartItem((prev) => ({ ...prev, [itemId]: 1 }));
-        } else {
-          setCartItem((prev) => ({ ...prev, [itemId]: prev[itemId] + 1 }));
+    if (existingItemIndex >= 0) {
+      // If exists, just update quantity
+      const updatedItems = [...cartItems];
+      updatedItems[existingItemIndex].quantity += 1;
+      setCartItems(updatedItems);
+      // Only make API call if token exists
+      if (token) {
+        try {
+          await axios.post(url + "/api/user/addCustomCard", updatedItems[existingItemIndex], { headers: { token } });
+        } catch (error) {
+          console.error("Error saving card to database:", error);
+          // Rollback local state if API fails
+          updatedItems[existingItemIndex].quantity -= 1;
+          setCartItems(updatedItems);
+          throw error;
         }
       }
-       else {
-          console.error(`Item with ID ${itemId} not found in any list`);
+    } else {
+      // If new item, assign a new unique _id and add to cart
+      const newItem = { ...item, _id: `${Date.now()}-${Math.random().toString(36).substr(2, 9)}` };
+      setCartItems(prev => [...prev, newItem]);
+      // Only make API call if token exists
+      if (token) {
+        try {
+          await axios.post(url + "/api/user/addCustomCard", newItem, { headers: { token } });
+        } catch (error) {
+          console.error("Error saving card to database:", error);
+          setCartItems(prev => prev.filter(cartItem => cartItem._id !== newItem._id));
+          throw error;
+        }
       }
+    }
   };
 
+  //for all products
+  const addToCart = async (itemId) => {
 
+    const isCardListItem = card_list.some((product) => product._id === itemId);
+
+    if (isCardListItem) {
+
+      if (!cartItem[itemId]) {
+        setCartItem((prev) => ({ ...prev, [itemId]: 1 }));
+      } else {
+        setCartItem((prev) => ({ ...prev, [itemId]: prev[itemId] + 1 }));
+      }
+    }
+
+    if (token) {
+      await axios.post(url + "/api/cart/add", { itemId }, { headers: { token } });
+    }
+  };
+
+  //for custum card design 
+  const removeFromCart1 = async (item) => {
+    setCartItems((prev) =>
+      prev
+        .map((cartItem) =>
+          cartItem._id === item._id && cartItem.quantity > 0
+            ? { ...cartItem, quantity: cartItem.quantity - 1 }
+            : cartItem
+        )
+        .filter((cartItem) => cartItem.quantity > 0)
+    );
+
+    if (token) {
+      await axios.post(url + "/api/cart/removecustomcard", { itemId: item._id }, { headers: { token } });
+    }
+  };
+
+  //for all products
   const removeFromCart = async (itemId) => {
     // Check if the item belongs to `card_list` or `custom_card_list`
     const isCardListItem = card_list.some((product) => product._id === itemId);
-    const isCustomCardListItem = custom_card_list.some((product) => product._id === itemId);
 
-    if (isCardListItem || isCustomCardListItem) {
-        
+    if (isCardListItem) {
+
       // setCartItem((prev) => ({ ...prev, [itemId]: prev[itemId] - 1 }))
-        if (cartItem[itemId] > 1) {
-            setCartItem((prev) => ({ ...prev, [itemId]: prev[itemId] - 1 }));
-        } else {
-            const updatedCart = { ...cartItem };
-            delete updatedCart[itemId];
-            setCartItem(updatedCart);
-        }
-    } else {
-        console.error(`Item with ID ${itemId} not found in any list`);
-    }
-};
-
-    // const getTotalCartAmount = () => {
-    //     let totalAmount = 0;
-    //     for (const itemId in cartItem) {
-    //       if (cartItem[itemId] > 0) {
-    //         const itemInfo = card_list.find((product) => product._id === itemId); // Find the item
-    //         if (itemInfo) {
-    //           totalAmount += itemInfo.price * cartItem[itemId]; // Calculate total price
-    //         }
-    //       }
-    //     }
-    //     return totalAmount;
-    //   };
-    const getTotalCartAmount = () => {
-      let totalAmount = 0;
-      for (const itemId in cartItem) {
-          if (cartItem[itemId] > 0) {
-              // Check if the item is in card_list
-              const isCardListItem = card_list.some((product) => product._id === itemId);
-              // Check if the item is in custom_card_list
-              const isCustomCardListItem = custom_card_list.some((product) => product._id === itemId);
-  
-              if (isCardListItem) {
-                  const itemInfo = card_list.find((product) => product._id === itemId);
-                  if (itemInfo) {
-                      totalAmount += itemInfo.price * cartItem[itemId]; // Calculate total price from card_list
-                  }
-              } else if (isCustomCardListItem) {
-                  const itemInfo = custom_card_list.find((product) => product._id === itemId);
-                  if (itemInfo) {
-                      totalAmount += itemInfo.price * cartItem[itemId]; // Calculate total price from custom_card_list
-                  }
-              }
-          }
+      if (cartItem[itemId] > 1) {
+        setCartItem((prev) => ({ ...prev, [itemId]: prev[itemId] - 1 }));
+      } else {
+        const updatedCart = { ...cartItem };
+        delete updatedCart[itemId];
+        setCartItem(updatedCart);
       }
-      return totalAmount;
-  };
-  
-    
-
-    const getTotalCartQuantity = () => {
-        let totalQuantity = 0;
-        for (const itemId in cartItem) {
-          totalQuantity += cartItem[itemId];
-        }
-        return totalQuantity;
-    };
-
-    const contextValue = {
-        card_list,
-        url,
-        token,
-        setToken,
-        cartItem,
-        setCartItem,
-        addToCart,
-        removeFromCart,
-        getTotalCartAmount,
-        getTotalCartQuantity,
-        custom_card_list,
+    } else {
+      console.error(`Item with ID ${itemId} not found in any list`);
     }
 
-    useEffect(() => {
-        if(localStorage.getItem("token")) {
-            setToken(localStorage.getItem("token"));
-        }
-    },[]);
+    if (token) {
+      await axios.post(url + "/api/cart/remove", { itemId }, { headers: { token } });
+    }
+  };
 
-    return (
-        <StoreContext.Provider value={contextValue}>
-            {props.children}
-        </StoreContext.Provider>
-    )
+
+  const getTotalCartAmount = () => {
+    let totalAmount = 0;
+
+    // Calculate total for cartItem (based on card_list and custom_card_list)
+    for (const itemId in cartItem) {
+      if (cartItem[itemId] > 0) {
+        // Check if the item is in card_list
+        const itemInfo = card_list.find((product) => product._id === itemId);
+
+        if (itemInfo) {
+          totalAmount += itemInfo.price * cartItem[itemId]; // Calculate total price
+        }
+      }
+    }
+
+    // Calculate total for cartItems (custom card design)
+    // totalAmount += cartItems.reduce(
+    //   (total, cartItem) => total + cartItem.price * cartItem.quantity,
+    //   0
+    // );
+    totalAmount += cartItems.reduce((total, cartItem) => {
+      if (cartItem && cartItem.price && cartItem.quantity > 0) {  // Validate cartItem
+        return total + cartItem.price * cartItem.quantity;
+      }
+      return total;  // If invalid, return the current total
+    }, 0);
+
+
+    return totalAmount;
+  };
+
+
+  const getTotalCartQuantity = () => {
+    // Calculate total quantity for items in card_list
+    const cardListQuantity = Object.values(cartItem).reduce((total, quantity) => total + quantity, 0);
+
+    // Calculate total quantity for custom card items
+    // const customCardQuantity = cartItems.reduce((total, item) => total + item.quantity, 0);
+    const customCardQuantity = cartItems.reduce((total, item) => {
+      return total + (item && typeof item.quantity === 'number' ? item.quantity : 0);
+    }, 0);
+
+    // Return the combined total
+    return cardListQuantity + customCardQuantity;
+  };
+
+
+  const loadCartData = async (token) => {
+    const response = await axios.post(url + "/api/cart/get", {}, { headers: { token } });
+    setCartItem(response.data.cartData);
+  }
+
+  // Filter out duplicate custom cards on load
+  const loadCustomCartData = async (token) => {
+    const response = await axios.post(url + "/api/cart/getcustomcard", {}, { headers: { token } });
+    const seen = new Set();
+    const filtered = (response.data.customCartData || []).filter(item => {
+      if (!item || !item._id || seen.has(item._id)) return false;
+      seen.add(item._id);
+      return true;
+    });
+    setCartItems(filtered);
+  };
+
+  useEffect(() => {
+    async function loadData() {
+      const storedToken = localStorage.getItem("token");
+
+      if (storedToken) {
+        setToken(storedToken);
+        await loadCartData(storedToken);
+        await loadCustomCartData(storedToken);
+      }
+    }
+    loadData();
+  }, []);
+
+
+  const contextValue = {
+    card_list,
+    url,
+    token,
+    setToken,
+    cartItem,
+    setCartItem,
+    addToCart,
+    removeFromCart,
+    getTotalCartAmount,
+    getTotalCartQuantity,
+    custom_card_list,
+    cartItems,
+    setCartItems,
+    addItemToCart,
+    removeFromCart1,
+  }
+
+  // useEffect(() => {
+  //     if(localStorage.getItem("token")) {
+  //         setToken(localStorage.getItem("token"));
+  //     }
+  // },[]);
+
+  return (
+    <StoreContext.Provider value={contextValue}>
+      {props.children}
+    </StoreContext.Provider>
+  )
 }
 
 export default StoreContextProvider;
+
+
+
+// if(token) {
+//   const itemId = item._id;
+//   await axios.post(url+"/api/cart/add",{itemId},{headers:{token}});
+// }
+
+// if(token) {
+//   const itemId = item._id;
+//   await axios.post(url+"/api/cart/remove",{itemId},{headers:{token}});
+// }
+
+
+
+// const customCardResponse = await axios.post(url + "/api/cart/getCustomCards",{}, {headers:{token}});
+//       const customCardData = customCardResponse.data.customCards || [];
+//       setCartItems(customCardResponse.data.customCardData);

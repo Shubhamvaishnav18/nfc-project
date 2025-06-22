@@ -6,7 +6,9 @@ import home_page from './home_page.png'
 import helocard from './helocard.png'
 import card from './card.png'
 import Design from './Design.png'
-import vj from './vj.png'
+import team1 from './team1.jpg'
+import team2 from './team2.jpg'
+import team3 from './team3.jpg'
 import add_icon_white from './add_icon_white.png'
 import add_icon_green from './add_icon_green.png'
 import remove_icon_red from './remove_icon_red.png'
@@ -42,7 +44,6 @@ export const assets = {
     helocard,
     card,
     Design,
-    vj,
     menu_icon,
     add_icon_green,
     add_icon_white,
@@ -52,6 +53,9 @@ export const assets = {
     qr2,
     nfc_symbol,
     nfc_symbol1,
+    team1,
+    team2,
+    team3,
 }
 
 export const card_list = [

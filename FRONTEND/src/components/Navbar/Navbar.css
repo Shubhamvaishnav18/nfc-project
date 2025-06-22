@@ -18,19 +18,25 @@ body {
     justify-content: space-between;
     align-items: center;
     padding: 15px 20px;
-    background-color: #6e6e6e;
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
     color: #fff;
     z-index: 3;
-    border-bottom: 1px solid #6e6e6e;
+    /* border-bottom: 1px solid #6e6e6e; */
 }
 
 .Navbar .logo a {
     font-size: 33px;
     font-family: "MuseoModerno", sans-serif;
     font-weight: 600;
-    color: #fff;
+    color: linear-gradient(135deg, #667eea, #764ba2, #f093fb);
     text-decoration: none;
 }
+
+.Navbar .logo a:hover {
+  transform: scale(1.05);
+  filter: drop-shadow(0 4px 8px rgba(102, 126, 234, 0.3));
+}
+
 
 .superscript {
     vertical-align: super;
@@ -40,6 +46,11 @@ body {
 .Navbar .nav-section {
     display: flex;
     list-style: none;
+    background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border-radius: 50px;
+  padding: 10px 20px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .Navbar .nav-section li {
@@ -59,26 +70,55 @@ body {
 }
 
 .Navbar .signup {
-    padding: 3px 8px;
-    font-size: 23px;
-    font-weight: 600;
-    color: #fff;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
+  padding: 12px 25px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: white;
+ background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border-radius: 50px;
+  padding: 10px 20px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .Navbar .signup:hover {
-    color: #5cbdb9;
+  cursor: pointer;
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+  color: #fff;
+}
+
+.Navbar .signup::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, #764ba2, #f093fb);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  border-radius: 25px;
 }
 
 .Navbar .logout {
-    font-size: 23px;
+  font-size: 1rem;
+  font-weight: 600;
+  padding: 12px 25px;
+  background: rgba(245, 101, 101, 0.2);
+  border-radius: 25px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: 2px solid rgba(245, 101, 101, 0.3);
+  backdrop-filter: blur(10px);
 }
 
 .Navbar .logout:hover {
-    cursor: pointer;
-    color: #5cbdb9;
+  background: rgba(245, 101, 101, 0.3);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(245, 101, 101, 0.3);
+  color: #fff;
 }
 
 .nav-login-cart {

@@ -3,7 +3,7 @@ import './NfcCard.css';
 import { useNavigate } from "react-router-dom";
 import { assets } from "../../assets/assets";
 import { StoreContext } from '../../context/StoreContext';
-
+import axios from 'axios';
 
 const NfcCard = () => {
   const [cardSide, setCardSide] = useState('front');
@@ -15,27 +15,43 @@ const NfcCard = () => {
   const [details, setDetails] = useState('');
   const [logo, setLogo] = useState(null);
 
-  const { addToCart1 } = useContext(StoreContext);
+  const { addItemToCart, setCartItems } = useContext(StoreContext);
   const navigate = useNavigate();
 
   const handleImageUpload = (e) => {
     setLogo(URL.createObjectURL(e.target.files[0]));
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
+  try {
+    const token = localStorage.getItem('token');
+    if (!token) {
+      throw new Error('Authentication token missing. Please login again.');
+    }
+
     const cardDetails = {
-      cardSide,
-      cardColor,
-      borderColor,
-      nfcColor,
+      _id: `${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
       title,
       subTitle,
       details,
+      cardColor,
+      borderColor,
+      nfcColor,
       logo,
+      name: "NFC Business Card - NFC Digital Card",
+      price: 599,
+      quantity: 1, 
+      createdAt: new Date().toISOString()
     };
-    addToCart1(cardDetails);
-    navigate('/cart'); // Redirect to Cart page
-  };
+
+    // Only use addItemToCart which will handle both local state and database
+    await addItemToCart(cardDetails);
+    navigate("/cart");
+  } catch (error) {
+    console.error("Error submitting card:", error);
+    alert(error.message || 'Failed to save card details');
+  }
+};
   
 
   return (

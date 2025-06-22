@@ -20,6 +20,7 @@ import NfcCard from "./pages/NfcCard/NfcCard.jsx";
 import Cart from "./pages/Cart/Cart"
 import Product from "./pages/Product/Product.jsx";
 import ProductDetail from "./pages/ProductDetail/ProductDetail.jsx";
+import PlaceOrder from "./pages/PlaceOrder/PlaceOrder"
 
 function App() {
 
@@ -48,6 +49,7 @@ function App() {
         <Route path="/Faq" element={<Faq />} />
         <Route path="/NfcCard" element={<NfcCard />} />
         <Route path="/cart" element={<Cart/>}/>
+        <Route path="/order" element={<PlaceOrder/>}/>
       </Routes>
       <Footer />
     </div>

@@ -11,12 +11,13 @@
     font-weight: 500;
 }
 
+
 .quantity-controls {
     display: flex;
     gap: 10px;
     background-color: rgb(242, 238, 238);
-    width: 90px;
-    padding: 10px 10px;
+    width: 100px;
+    padding: 10px 16px;
     border-radius: 5px;
 }
 
@@ -43,7 +44,7 @@
 }
 
 .cart-items-item img {
-    width: 80px;
+    width: 90px;
 }
 
 /* .nfc-card-preview {
@@ -112,3 +113,106 @@
         justify-content: start;
     }
 }
+
+.nfc-card-preview1 {
+    width: 105px;
+    height: 80px;
+    margin-top: 10px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    position: relative;
+  }
+
+  .card-content1 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+    padding: 20px;
+  }
+
+  .qr-code-container1 {
+    position: absolute;
+    bottom: 6px;
+    right: 7px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 27px; /* Adjust size as needed */
+    height: 27px;
+    background-color: #fff; /* Background color for QR container */
+    border: 2px solid #000; /* Border color */
+    border-radius: 4px; /* Rounded corners for the container */
+    overflow: hidden; /* Ensures the QR code doesn't overflow the container */
+  }
+  
+  .qr-code-container1 .qr-code-image1 {
+    width: 100%; /* Make the QR code image fit the container */
+    height: 100%;
+    object-fit: cover; /* Ensures the image doesn't stretch */
+  }
+
+  .card-logo1 {
+    position: absolute;
+    top: 6px;
+    left: -18px;
+    width: 5px;
+    height: 25px;
+    object-fit: contain;
+    /* background-color: red; */
+  }
+
+  .title-sub-det1 {
+    position: absolute; /* Allows precise positioning within the card */
+    bottom: 2px; /* Distance from the bottom of the card */
+    left: 9px; /* Distance from the left side of the card */
+    display: flex;
+    flex-direction: column; /* Stacks the elements vertically */
+    align-items: flex-start; /* Aligns text to the left */
+     /* Adds some spacing inside the container */
+    box-sizing: border-box; /* Ensures padding is included in the size */
+    /* max-width: calc(100% - 20px);  */
+  }
+  
+  .title-sub-det1 h2,
+  .title-sub-det1 h4,
+  .title-sub-det1 p {
+    margin: 0; 
+    padding: 0; 
+  }
+  
+  .title-sub-det1 h2 {
+    font-size: .5rem; /* Adjusts the size for prominence */
+    font-weight: bold;
+  }
+  
+  .title-sub-det1 h4 {
+    font-size: .3rem; /* Adjusts the size for sub-title */
+    font-weight: normal;
+  }
+  
+  .title-sub-det1 p {
+    font-size: .3rem; /* Adjusts the size for additional details */
+    font-weight: lighter;
+  }
+
+  /* .nfc-symbol1 {
+    position: absolute; 
+    top: 8px;
+    right: 2px; 
+    width: 10px; 
+    height: 10px; 
+    object-fit: contain; 
+    z-index: 2; 
+  } */
+
+  .nfc-symbol1 {
+    position: absolute; /* Allows precise positioning within the card */
+    top: 6px; /* Distance from the top of the card */
+    right: -30px; /* Distance from the right side of the card */
+    width: 5px; /* Adjust the size of the NFC symbol */
+    height: 10px; /* Ensures the symbol is square */
+    object-fit: contain; 
+    z-index: 2; /* Ensures it appears above other elements */
+    /* background-color: red; */
+  }

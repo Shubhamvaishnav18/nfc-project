@@ -1,48 +1,90 @@
 .about-container-about {
-    padding: 30px 20px;
-    max-width: 1000px;
-    margin: 50px auto;
+    padding: 40px 30px;
+    max-width: 1200px;
+    margin: 60px auto;
     text-align: center;
-    background-color: #f9f9f9;
-    border-radius: 10px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    border-radius: 20px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1), 0 8px 16px rgba(0, 0, 0, 0.06);
+    position: relative;
+    overflow: hidden;
+}
+
+.about-container-about::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #5cbdb9, #4a9d9a, #5cbdb9);
+    background-size: 200% 100%;
+    animation: shimmer 3s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+    0%, 100% { background-position: -200% 0; }
+    50% { background-position: 200% 0; }
 }
 
 .about-header, .about-mission, .about-vision, .about-team, .about-contact {
-    margin-bottom: 50px;
+    margin-bottom: 60px;
+    padding: 30px;
+    /* background: rgba(255, 255, 255, 0.7); */
+    border-radius: 15px;
+    /* backdrop-filter: blur(10px); */
+    /* border: 1px solid rgba(255, 255, 255, 0.2); */
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.about-header:hover, .about-mission:hover, .about-vision:hover, .about-team:hover, .about-contact:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(92, 189, 185, 0.2);
 }
 
 .about-header h1 {
-    font-size: 2.5rem;
-    font-weight: 700;
-    margin-bottom: 15px;
-    color: #222;
+    font-size: 3rem;
+    font-weight: 800;
+    margin-bottom: 20px;
+    background: linear-gradient(135deg, #2c3e50, #5cbdb9);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    position: relative;
+    animation: fadeInUp 1s ease-out;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .about-header p {
-    font-size: 1.15rem;
-    color: #666;
-    max-width: 800px;
+    font-size: 1.2rem;
+    color: #555;
+    max-width: 900px;
     margin: 0 auto;
-    line-height: 1.6;
+    line-height: 1.8;
+    text-align: justify;
+    animation: fadeInUp 1s ease-out 0.2s both;
 }
 
 .about-mission h2, .about-vision h2, .about-team h2, .about-contact h2 {
-    font-size: 1.75rem;
-    font-weight: 600;
-    color: #444;
-    margin-bottom: 20px;
+    font-size: 2rem;
+    font-weight: 700;
+    color: #2c3e50;
+    margin-bottom: 25px;
     position: relative;
     display: inline-block;
-    padding-bottom: 10px;
-}
-
-.about-mission img {
-    height: 250px;
-    width: 100%;
-    max-width: 450px;
-    margin-top: 40px;
-    border-radius: 10px;
+    padding-bottom: 15px;
+    transition: all 0.3s ease;
 }
 
 .about-mission h2::after, .about-vision h2::after, .about-team h2::after, .about-contact h2::after {
@@ -50,69 +92,136 @@
     position: absolute;
     left: 50%;
     bottom: 0;
-    width: 50px;
-    height: 3px;
-    background-color: #5cbdb9;
+    width: 60px;
+    height: 4px;
+    background: linear-gradient(90deg, #5cbdb9, #4a9d9a);
     transform: translateX(-50%);
     border-radius: 2px;
+    transition: width 0.3s ease;
+}
+
+.about-mission h2:hover::after, .about-vision h2:hover::after, .about-team h2:hover::after, .about-contact h2:hover::after {
+    width: 80px;
+}
+
+.about-mission img {
+    height: 280px;
+    width: 100%;
+    max-width: 500px;
+    margin-top: 30px;
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    transition: all 0.3s ease;
+    filter: brightness(1.05);
+}
+
+.about-mission img:hover {
+    transform: scale(1.05) rotate(1deg);
+    box-shadow: 0 20px 40px rgba(92, 189, 185, 0.3);
 }
 
 .about-mission p, .about-vision p, .about-team p, .about-contact p {
-    font-size: 1.1rem;
-    color: #555;
-    line-height: 1.75;
-    max-width: 800px;
+    font-size: 1.15rem;
+    color: #444;
+    line-height: 1.8;
+    max-width: 850px;
     margin: auto;
+    text-align: justify;
+    position: relative;
+    padding: 20px;
+    background: rgba(92, 189, 185, 0.05);
+    border-radius: 10px;
+    border-left: 4px solid #5cbdb9;
 }
 
 .about-team img {
-    height: 200px;
-    width: 100%;
-    max-width: 150px;
-    margin-top: 20px;
+    height: 220px;
+    width: 220px;
+    margin-top: 25px;
     border-radius: 50%;
+    border: 5px solid #5cbdb9;
+    box-shadow: 0 10px 25px rgba(92, 189, 185, 0.3);
+    transition: all 0.3s ease;
+    filter: grayscale(20%);
 }
 
-.about-contact-details p {
-    line-height: 1.75;
-    font-size: 1.1rem;
-    max-width: 800px;
-    margin: auto;
-    color: #555;
+.about-team img:hover {
+    transform: scale(1.1);
+    filter: grayscale(0%);
+    box-shadow: 0 15px 35px rgba(92, 189, 185, 0.4);
+}
+
+.about-contact {
+    background: linear-gradient(135deg, #5cbdb9 0%, #4a9d9a 100%);
+    color: white;
+}
+
+.about-contact h2 {
+    color: white;
+}
+
+.about-contact h2::after {
+    background: white;
+}
+
+.about-contact p {
+    background: rgba(255, 255, 255, 0.1);
+    border-left: 4px solid white;
+    color: white;
+    font-weight: 500;
 }
 
 .about-header h1:hover, .about-mission h2:hover, .about-vision h2:hover, .about-team h2:hover, .about-contact h2:hover {
     color: #5cbdb9;
     cursor: pointer;
+    transform: scale(1.05);
 }
 
+.about-contact h2:hover {
+    color: white;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+/* Enhanced responsive design */
 @media (max-width: 768px) {
     .about-container-about {
-        padding: 20px 10px;
+        padding: 30px 15px;
+        margin: 40px 20px;
+    }
+
+    .about-header, .about-mission, .about-vision, .about-team, .about-contact {
+        padding: 20px;
+        margin-bottom: 40px;
     }
 
     .about-header h1 {
-        font-size: 2rem;
+        font-size: 2.5rem;
     }
 
     .about-header p, .about-mission p, .about-vision p, .about-team p, .about-contact p {
-        font-size: 1rem;
-        padding: 0 10px;
+        font-size: 1.05rem;
+        padding: 15px;
     }
 
-    .about-mission img, .about-team img {
-        width: 80%;
+    .about-mission img {
+        width: 90%;
         height: auto;
+    }
+
+    .about-team img {
+        width: 180px;
+        height: 180px;
     }
 }
 
 @media (max-width: 480px) {
     .about-header h1 {
-        font-size: 1.8rem;
+        font-size: 2.2rem;
     }
 
     .about-header p, .about-mission p, .about-vision p, .about-team p, .about-contact p {
-        font-size: 0.95rem;
+        font-size: 1rem;
+        text-align: left;
     }
 
     .about-mission img, .about-team img {
@@ -120,6 +229,29 @@
     }
     
     .about-mission h2, .about-vision h2, .about-team h2, .about-contact h2 {
-        font-size: 1.5rem;
+        font-size: 1.7rem;
     }
+
+    .about-team img {
+        width: 150px;
+        height: 150px;
+    }
+}
+
+/* Add subtle animations */
+@keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+}
+
+.about-mission img, .about-team img {
+    animation: float 6s ease-in-out infinite;
+}
+
+.about-mission img {
+    animation-delay: 0s;
+}
+
+.about-team img {
+    animation-delay: 3s;
 }

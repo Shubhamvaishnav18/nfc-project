@@ -25,7 +25,7 @@ const ContactPage = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     
-    const response = await axios.post('http://localhost:4000/api/contact/contact', formData); // Make sure the URL matches your backend API route
+    const response = await axios.post('http://localhost:4000/api/contact/contact', formData); 
 
     if (response.data.success) {
       setSuccessMessage("Thank you, we'll contact you soon");
@@ -43,8 +43,8 @@ const ContactPage = () => {
         <p>Do fill in the form, or give us a call.</p>
         <div className="contact-info">
           <div className="location">
-            <p>HeloTap India Pvt. Ltd., Gurugram, Haryana, India 122001</p>
-            <p>Vijay Yadav <br />helotap@gamil.com <br /> +91-8368509527</p>
+            <p>HeloTap India Pvt. Ltd., Delhi, India 234567</p>
+            <p>Maxx <br />helotap@gamil.com <br /> +91-9234753892</p>
             <img src={assets.Design} alt="" />
           </div>  
         </div>

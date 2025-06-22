@@ -1,52 +1,15 @@
 import React, { useContext } from "react"
 import "./Cart.css"
 import { StoreContext } from "../../context/StoreContext"
-import { useNavigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 import axios from 'axios';
 import { assets } from "../../assets/assets";
 
 const Cart = () => {
 
-  const {cartItem, card_list, custom_card_list, removeFromCart, getTotalCartAmount, addToCart} = useContext(StoreContext);
+  const {cartItem, card_list, removeFromCart, getTotalCartAmount, addToCart, cartItems, removeFromCart1, addItemToCart} = useContext(StoreContext);
 
-//   const navigate = useNavigate();
-
-  // const renderCustomCardPreview = (item) => {
-  //   return (
-  //     <div className="nfc-card-preview" style={{ backgroundColor: item.cardColor }}>
-  //               <div className="card-content">
-  //                 {item.cardSide === 'front' && (
-  //                   <>
-  //                     <img src={logo || '/home_page.png'} alt="" className="card-logo" />
-  //                     <div className="title-sub-det">
-  //                     <h2 style={{ color: nfcColor }}>{title || 'Your Name'}</h2>
-  //                     <h4 style={{ color: nfcColor }}>{subTitle || ''}</h4>
-  //                     <p style={{ color: nfcColor }}>{details || ''}</p>
-  //                     </div>
-  //                     <img src={assets.nfc_symbol1} alt="" className='nfc-symbol'/>
-  //                     <div
-  //                       className="qr-code-container"
-  //                       style={{
-  //                         borderColor: borderColor,
-  //                       }}
-  //                     >
-  //                       <img
-  //                         src={assets.qr1}
-  //                         alt="QR Code"
-  //                         className="qr-code-image"
-  //                       />
-  //                     </div>
-  //                   </>
-  //                 )}
-  //                 {item.cardSide === 'back' && (
-  //                   <div className="back-side">
-  //                     HeloTap<span className="superscript">.in</span>
-  //                   </div>
-  //                 )}
-  //               </div>
-  //             </div>
-  //   );
-  // };
+  const navigate = useNavigate();
 
   return (
     <div className="cart">
@@ -85,67 +48,48 @@ const Cart = () => {
           }
         })}
 
-{/* {custom_card_list.map((item) => {
-          if (cartItem[item._id] > 0) {
+        {/* Render the cards added to the cart */}
+
+        {cartItems.map((item) => {
+          if (item && item.quantity > 0) { 
             return (
               <div key={item._id}>
                 <div className="cart-items-title cart-items-item">
                   
-                  {renderCustomCardPreview(item)}
+                  <div className="nfc-card-preview1" style={{ backgroundColor: item.cardColor }}>
+                    <div className="card-content1">
+                      <img src={item.logo || '/home_page.png'} alt="logo" className="card-logo1" />
+                      <div className="title-sub-det1">
+                        <h2 style={{ color: item.nfcColor }}>{item.title || 'Your Name'}</h2>
+                        <h4 style={{ color: item.nfcColor }}>{item.subTitle || ''}</h4>
+                        <p style={{ color: item.nfcColor }}>{item.details || ''}</p>
+                      </div>
+                      <img src={assets.nfc_symbol1} alt="NFC Symbol" className="nfc-symbol1" />
+                      <div
+                        className="qr-code-container1"
+                        style={{ borderColor: item.borderColor }}
+                      >
+                        <img src={assets.qr1} alt="QR Code" className="qr-code-image1" />
+                      </div>
+                    </div>
+                  </div>
+
+                  
                   <p>{item.name}</p>
                   <p>₹{item.price}</p>
                   <div className="quantity-controls">
-                    <button onClick={() => removeFromCart(item._id)}>-</button>
-                    <p>{cartItem[item._id]}</p>
-                    <button onClick={() => addToCart(item._id)}>+</button>
+                    <button onClick={() => removeFromCart1(item)}>-</button>
+                    <p>{item.quantity}</p> 
+                    <button onClick={() => addItemToCart(item)}>+</button>
                   </div>
-                  <p>₹{item.price * cartItem[item._id]}</p>
-                  <p onClick={() => removeFromCart(item._id)} className="cross">x</p>
+                  <p>₹{item.price * item.quantity}</p> 
+                  <p onClick={() => removeFromCart1(item)} className="cross">x</p>
                 </div>
                 <hr />
               </div>
-            )
-          }  
-        })} */}
-
-        {/* Render custom cards */}
-        {Object.keys(cartItem).map((key) => {
-  const item = cartItem[key];
-
-  if (item._id) {
-    // Render custom card if available
-    return (
-      <div key={key}>
-        <div className="cart-items-title cart-items-item">
-          <div className="nfc-card-preview" style={{ backgroundColor: item.cardColor }}>
-            <div className="card-content">
-              <img src={item.logo || '/home_page.png'} alt="" className="card-logo" />
-              <div className="title-sub-det">
-                <h2 style={{ color: item.nfcColor }}>{item.title || 'Your Name'}</h2>
-                <h4 style={{ color: item.nfcColor }}>{item.subTitle || ''}</h4>
-                <p style={{ color: item.nfcColor }}>{item.details || ''}</p>
-              </div>
-              <img src={assets.nfc_symbol1} alt="" className='nfc-symbol'/>
-              <div className="qr-code-container" style={{ borderColor: item.borderColor }}>
-                <img src={assets.qr1} alt="QR Code" className="qr-code-image" />
-              </div>
-            </div>
-          </div>
-          <p>{item.name}</p>
-          <p>₹{item.price}</p>
-          <div className="quantity-controls">
-            <button onClick={() => removeFromCart(key)}>-</button>
-            <p>{cartItem[key]}</p>
-            <button onClick={() => addToCart(key)}>+</button>
-          </div>
-          <p>₹{item.price * cartItem[key]}</p>
-          <p onClick={() => removeFromCart(key)} className="cross">x</p>
-        </div>
-        <hr />
-      </div>
-    );
-  }
-})}
+            );
+          }
+        })}
 
 
       </div>
@@ -168,7 +112,7 @@ const Cart = () => {
               <b>₹{getTotalCartAmount()===0?0:getTotalCartAmount()+100}</b>
             </div>
           </div>
-          <button>PROCEED TO CHECKOUT</button>   
+          <button onClick={() => navigate("/order")}>PROCEED TO CHECKOUT</button>   
         </div>
       </div>
     </div>
@@ -176,10 +120,3 @@ const Cart = () => {
 }
 
 export default Cart
-
-
-
-
-
-
-// onClick={()=>navigate("/order")}

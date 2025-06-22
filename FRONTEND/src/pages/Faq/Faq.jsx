@@ -61,8 +61,11 @@ function Faq() {
 
   return (
     <div className="faq-container">
-      <h1>Frequently Asked Questions</h1>
-      <p>Check most frequently asked questions here, if you still need help please contact us at support@helotap.com.</p>
+      <div className="faq-header">
+        <div className="faq-icon">❓</div>
+        <h1>Frequently Asked Questions</h1>
+        <p>Check most frequently asked questions here, if you still need help please contact us at <a href="mailto:support@helotap.com">support@helotap.com</a>.</p>
+      </div>
 
       <div className="faq-list">
         {faqs.map((faq, index) => (
@@ -73,11 +76,19 @@ function Faq() {
           >
             <div className="faq-question">
               {faq.question}
-              <span className="faq-toggle">{activeIndex === index ? '-' : '+'}</span>
+              <span className="faq-toggle">{activeIndex === index ? '−' : '+'}</span>
             </div>
-            {activeIndex === index && <div className="faq-answer">{faq.answer}</div>}
+            <div className="faq-answer">
+              <div className="faq-answer-content">{faq.answer}</div>
+            </div>
           </div>
         ))}
+      </div>
+
+      <div className="faq-contact">
+        <h3>Still have questions?</h3>
+        <p>Our support team is here to help you with any additional questions.</p>
+        <a href="mailto:support@helotap.com" className="contact-btn">Contact Support</a>
       </div>
     </div>
   );

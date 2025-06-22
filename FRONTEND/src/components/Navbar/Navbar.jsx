@@ -34,14 +34,7 @@ const Navbar = ({ setShowLogin }) => {
       <ul className="nav-section">
         <li><NavLink to='/'>Home</NavLink></li>
         <li><NavLink to='/designcard'>Design your card</NavLink></li>
-        <li><NavLink to='/product'>Product</NavLink></li>
-        {/* <li className="dropdown">
-          <NavLink>Shop</NavLink>
-          <div className="dropdown-content">
-            <NavLink to="/pvc">PVC Card</NavLink>
-            <NavLink to="/metal">Metal Card</NavLink>
-          </div>
-        </li> */}
+        <li><NavLink to='/product'>Products</NavLink></li>
         <li><NavLink to='/about'>About</NavLink></li>
         <li><NavLink to='/contact'>Contact</NavLink></li>
       </ul>
@@ -49,13 +42,7 @@ const Navbar = ({ setShowLogin }) => {
       <ul className={mobileMenu?'Mobile-menu':'hide-Mobile-menu'}>
         <li><NavLink to='/'>Home</NavLink></li>
         <li><NavLink to='/designcard'>Design your card</NavLink></li>
-        <li className="dropdown">
-          <NavLink>Shop</NavLink>
-          <div className="dropdown-content">
-            <NavLink to="/pvc">PVC Card</NavLink>
-            <NavLink to="/metal">Metal Card</NavLink>
-          </div>
-        </li>
+        <li><NavLink to='/product'>Products</NavLink></li>
         <li><NavLink to='/about'>About</NavLink></li>
         <li><NavLink to='/contact'>Contact</NavLink></li>
       </ul>
