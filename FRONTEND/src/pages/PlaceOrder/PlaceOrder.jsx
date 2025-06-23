@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 
 const PlaceOrder = () => {
   const { getTotalCartAmount, token, card_list, cartItem, url } = useContext(StoreContext);
-
+  const navigate = useNavigate();
 
   const [data, setData] = useState({
     firstName: "",
@@ -50,14 +50,14 @@ const PlaceOrder = () => {
       });
 
       if (response.data.success) {
-        const { razorpayOrderId } = response.data;
+        const { orderId, razorpayOrderId } = response.data;
 
         // Initiate Razorpay payment
         const options = {
           key: import.meta.env.VITE_RAZORPAY_KEY_ID, // Using Vite environment variable
           amount: orderData.amount, // Amount in paise
           currency: "INR",
-          name: "Your Store Name", // Optional
+          name: "HeloTap", // Optional
           description: "Order Payment",
           // image: "https://your-logo-url.com", 
           order_id: razorpayOrderId,
@@ -67,7 +67,7 @@ const PlaceOrder = () => {
               razorpayPaymentId: response.razorpay_payment_id,
               razorpayOrderId: response.razorpay_order_id,
               razorpaySignature: response.razorpay_signature,
-              orderId: response.data.orderId,
+              orderId: orderId,
             };
 
             // Send payment verification request to the backend
@@ -75,7 +75,25 @@ const PlaceOrder = () => {
               const verifyResponse = await axios.post(url + "/api/order/verify", paymentData);
               if (verifyResponse.data.success) {
                 alert("Payment successful!");
-                // Redirect to success page
+
+                const receiptRes = await axios.post(`${url}/api/receipts/receipt`, {
+                  paymentId: response.razorpay_payment_id,
+                  orderId: response.razorpay_order_id,
+                  amount: orderData.amount,
+                  userEmail: data.email,
+                  date: new Date(),
+                });
+
+                if (receiptRes.data.success && receiptRes.data.receiptUrl) {
+                  navigate("/order-success", {
+                    state: {
+                      receiptUrl: receiptRes.data.receiptUrl,
+                      paymentId: response.razorpay_payment_id,
+                      orderId: response.razorpay_order_id,
+                      amount: orderData.amount,
+                    },
+                  });
+                }
               } else {
                 alert("Payment verification failed");
               }
@@ -98,8 +116,6 @@ const PlaceOrder = () => {
       alert("Error placing the order");
     }
   };
-
-  const navigate = useNavigate();
 
   useEffect(() => {
     if (!token) {
@@ -133,19 +149,19 @@ const PlaceOrder = () => {
         <div className="cart-total">
           <h2>Cart Totals</h2>
           <div>
-          <div className="cart-total-details">
+            <div className="cart-total-details">
               <p>Subtotal</p>
               <p>₹{getTotalCartAmount()}</p>
             </div>
             <hr />
             <div className="cart-total-details">
               <p>Delivery Fee</p>
-              <p>₹{getTotalCartAmount()===0?0:100}</p>
+              <p>₹{getTotalCartAmount() === 0 ? 0 : 100}</p>
             </div>
             <hr />
             <div className="cart-total-details">
               <b>Total</b>
-              <b>₹{getTotalCartAmount()===0?0:getTotalCartAmount()+100}</b>
+              <b>₹{getTotalCartAmount() === 0 ? 0 : getTotalCartAmount() + 100}</b>
             </div>
           </div>
           <button type="submit">PROCEED TO PAYMENT</button>

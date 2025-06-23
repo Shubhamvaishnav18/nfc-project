@@ -1,6 +1,6 @@
 import express from "express";
 import multer from "multer";
-import { loginUser, registerUser, updateUserDetails, addCustomCard } from "../controllers/userControllers.js";
+import { loginUser, registerUser, updateUserDetails, addCustomCard, forgotPassword, resetPassword } from "../controllers/userControllers.js";
 
 const userRouter = express.Router();
 
@@ -20,5 +20,7 @@ userRouter.post("/register", registerUser);
 userRouter.post("/login", loginUser);
 userRouter.post("/updateUserDetails", upload.single("logo"), updateUserDetails);
 userRouter.post("/addCustomCard", addCustomCard);
+userRouter.post("/forgot-password", forgotPassword);
+userRouter.post("/reset-password/:token", resetPassword);
 
 export default userRouter; 

@@ -1,6 +1,7 @@
 import userModel from "../models/userModel.js";
 import orderModel from "../models/orderModel.js";
 import Razorpay from 'razorpay';
+import crypto from "crypto";
 import dotenv from 'dotenv';
 dotenv.config();
 
@@ -48,7 +49,6 @@ const placeOrder = async (req,res) => {
 };
 
 const verifyOrder = async (req, res) => {
-    const crypto = await import("crypto");
 
     const { orderId, razorpayPaymentId, razorpayOrderId, razorpaySignature } = req.body;
 
