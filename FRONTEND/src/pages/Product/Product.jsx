@@ -5,18 +5,29 @@ import { card_list } from "../../assets/assets";
 
 const Product = () => {
   const [selectedCategory, setSelectedCategory] = useState("All");
+  const [searchQuery, setSearchQuery] = useState("");
 
   const uniqueCategories = [...new Set(card_list.map(card => card.category))];
 
-  const filteredCards =
-    selectedCategory === "All"
-      ? card_list
-      : card_list.filter((card) => card.category === selectedCategory);
+  const filteredCards = card_list.filter((card) => {
+    const matchesCategory = selectedCategory === "All" || card.category === selectedCategory;
+    const matchesSearch = card.name.toLowerCase().includes(searchQuery.toLowerCase());
+    return matchesCategory && matchesSearch;
+  });
 
   return (
     <div className="product-list">
       <div className="product-header">
         <h1>Our Products</h1>
+         <div className="search-container">
+          <input
+            type="text"
+            placeholder="Search here..."
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            className="search-input"
+          />
+        </div>
         <select
           value={selectedCategory}
           onChange={(e) => setSelectedCategory(e.target.value)}
@@ -32,7 +43,8 @@ const Product = () => {
       </div>
 
       <div className="cards">
-        {filteredCards.map((card) => (
+        {filteredCards.length > 0 ? (
+        filteredCards.map((card) => (
           <div className="card" key={card._id}>
             <img src={card.image} alt={card.name} />
             <h2>{card.name}</h2>
@@ -41,7 +53,12 @@ const Product = () => {
               <button>View Details</button>
             </NavLink>
           </div>
-        ))}
+        ))
+      ) : (
+          <div className="no-results">
+            <p>No products found matching your criteria.</p>
+          </div>
+        )}
       </div>
     </div>
   );

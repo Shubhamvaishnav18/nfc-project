@@ -29,9 +29,9 @@ const DesignCard = () => {
           designs and make it truly yours.
         </p>
         <ul className="features-list">
-          <li>✅ One-Time Payment, No Monthly Fees</li>
-          <li>✅ Compatible with iOS & Android - No App Needed</li>
-          <li>✅ One Card, One Profile, Unlimited Sharing</li>
+          <li>One-Time Payment, No Monthly Fees</li>
+          <li>Compatible with iOS & Android - No App Needed</li>
+          <li>One Card, One Profile, Unlimited Sharing</li>
         </ul>
         <button className="design-button" onClick={()=>navigate("/NfcCard")}>Design your card</button>
       </div>

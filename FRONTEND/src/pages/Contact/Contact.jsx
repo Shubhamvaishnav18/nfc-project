@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import './Contact.css';
 import { assets } from "../../assets/assets"
 import axios from 'axios';
+import { toast } from 'react-toastify';
 
 const ContactPage = () => {
 
@@ -11,8 +12,6 @@ const ContactPage = () => {
     phone: '',
     message: ''
   });
-
-  const [successMessage, setSuccessMessage] = useState('');
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -28,11 +27,11 @@ const ContactPage = () => {
     const response = await axios.post('http://localhost:4000/api/contact/contact', formData); 
 
     if (response.data.success) {
-      setSuccessMessage("Thank you, we'll contact you soon");
+      toast.success("Thank you, we'll contact you soon!");
       setFormData({ name: '', email: '', phone: '', message: '' }); 
     }
     else {
-      alert(response.data.message);
+      toast.error(response.data.message);
     }
   };
 
@@ -70,7 +69,6 @@ const ContactPage = () => {
             <textarea id="message" name="message" value={formData.message} onChange={handleChange} required></textarea>
           </div>
           <button type="submit" className="send-button">SEND</button>
-          {successMessage && <p className='masz'>{successMessage}</p>}
         </form>
       </div>
     </div>

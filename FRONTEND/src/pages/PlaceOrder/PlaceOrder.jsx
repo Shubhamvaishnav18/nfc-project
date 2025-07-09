@@ -3,9 +3,10 @@ import "./Placeorder.css";
 import { StoreContext } from "../../context/StoreContext";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { toast } from 'react-toastify';
 
 const PlaceOrder = () => {
-  const { getTotalCartAmount, token, card_list, cartItem, url } = useContext(StoreContext);
+  const { getTotalCartAmount, token, card_list, cartItem, cartItems, cardDetails, url } = useContext(StoreContext);
   const navigate = useNavigate();
 
   const [data, setData] = useState({
@@ -31,11 +32,38 @@ const PlaceOrder = () => {
     let orderItems = [];
     card_list.map((item) => {
       if (cartItem[item._id] > 0) {
-        let itemInfo = item;
-        itemInfo["quantity"] = cartItem[item._id];
+        let itemInfo = {
+          ...item,
+          quantity: cartItem[item._id],
+          isCustomCard: false, // Flag to identify pre-built cards
+          cardDetails: cardDetails[item._id] || {} // Include user-entered details
+        };
+        console.log("cardDetails>>>>>>>>>", cardDetails);
         orderItems.push(itemInfo);
       }
     });
+
+    cartItems.forEach((item) => {
+      if (item && item.quantity > 0) {
+        orderItems.push({
+          _id: item._id,
+          name: item.name,
+          price: item.price,
+          quantity: item.quantity,
+          isCustomCard: true, // Flag to identify custom cards
+          cardDetails: { // Include all custom card details
+            title: item.title,
+            subTitle: item.subTitle,
+            details: item.details,
+            cardColor: item.cardColor,
+            borderColor: item.borderColor,
+            nfcColor: item.nfcColor,
+            logo: item.logo
+          }
+        });
+      }
+    });
+
     let orderData = {
       address: data,
       items: orderItems,
@@ -74,7 +102,7 @@ const PlaceOrder = () => {
             try {
               const verifyResponse = await axios.post(url + "/api/order/verify", paymentData);
               if (verifyResponse.data.success) {
-                alert("Payment successful!");
+                toast.success("Payment successful!");
 
                 const receiptRes = await axios.post(`${url}/api/receipts/receipt`, {
                   paymentId: response.razorpay_payment_id,
@@ -109,11 +137,11 @@ const PlaceOrder = () => {
         const rzp1 = new window.Razorpay(options);
         rzp1.open();
       } else {
-        alert("Error placing the order.");
+        toast.error("Error placing the order.");
       }
     } catch (error) {
       console.log("Error placing order:", error);
-      alert("Error placing the order");
+      toast.error("Error placing the order");
     }
   };
 

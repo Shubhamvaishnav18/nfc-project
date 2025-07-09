@@ -66,7 +66,12 @@ body {
 }
 
 .Navbar .nav-section li a:hover {
-    color: #5cbdb9; 
+    background: linear-gradient(135deg, #3498db 0%, #9b59b6 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    position: relative;
+    display: inline-block;
 }
 
 .Navbar .signup {

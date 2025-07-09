@@ -3,7 +3,7 @@
   left: 0;
   height: auto;
   width: 100%;
-  background-color: #5cbdb9;
+  background: linear-gradient(135deg, #3498db 0%, #9b59b6 100%);
   color: #fff;
   padding: 5px 25px;
   text-align: center;

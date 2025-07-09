@@ -9,6 +9,7 @@ const StoreContextProvider = (props) => {
 
   const [cartItem, setCartItem] = useState({}); //for all products
   const [cartItems, setCartItems] = useState([]); //for custom card
+  const [cardDetails, setCardDetails] = useState({});
   const url = "http://localhost:4000";
   const [token, setToken] = useState("");
 
@@ -57,7 +58,7 @@ const StoreContextProvider = (props) => {
   };
 
   //for all products
-  const addToCart = async (itemId) => {
+  const addToCart = async (itemId, details = null) => {
 
     const isCardListItem = card_list.some((product) => product._id === itemId);
 
@@ -68,6 +69,13 @@ const StoreContextProvider = (props) => {
       } else {
         setCartItem((prev) => ({ ...prev, [itemId]: prev[itemId] + 1 }));
       }
+
+      if (details) {
+            setCardDetails((prev) => ({
+                ...prev,
+                [itemId]: details
+            }));
+        }
     }
 
     if (token) {
@@ -202,6 +210,7 @@ const StoreContextProvider = (props) => {
     setToken,
     cartItem,
     setCartItem,
+    cardDetails,
     addToCart,
     removeFromCart,
     getTotalCartAmount,

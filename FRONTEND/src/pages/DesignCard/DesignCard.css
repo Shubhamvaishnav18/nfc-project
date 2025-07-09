@@ -2,181 +2,344 @@
   display: flex;
   justify-content: space-around;
   align-items: center;
-  padding: 40px;
-  background-color: #f9f9f9;
+  padding: 60px 40px;
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
   flex-wrap: wrap;
+  position: relative;
+  overflow: hidden;
+}
+
+.design-your-card::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0) 70%);
+  z-index: 0;
 }
 
 .card-image-section {
   flex: 1;
+  min-width: 300px;
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative;
+  z-index: 1;
+  padding: 20px;
 }
 
 .design-card-image {
-  width: 70%;
+  width: 80%;
+  max-width: 500px;
   height: auto;
-  padding: 20px;
-  margin-top: 50px;
-  background-color: #ccc;
-  border-radius: 10px;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  border-radius: 20px;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  transform: perspective(1000px) rotateY(-10deg);
+  transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  background: white;
+  padding: 15px;
+}
+
+.design-card-image:hover {
+  transform: perspective(1000px) rotateY(0deg) scale(1.05);
+  box-shadow: 0 30px 60px -12px rgba(0, 0, 0, 0.3);
 }
 
 .card-info-section {
   flex: 1;
+  min-width: 300px;
   text-align: left;
-  padding: 20px;
+  padding: 40px;
+  position: relative;
+  z-index: 1;
 }
 
 .card-info-section h2 {
-  font-size: 2rem;
-  margin-bottom: 20px;
+  font-size: 2.5rem;
+  margin-bottom: 25px;
+  color: #2c3e50;
+  font-weight: 700;
+  line-height: 1.2;
+  position: relative;
+}
+
+.card-info-section h2::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 0;
+  width: 80px;
+  height: 4px;
+  background: linear-gradient(90deg, #3498db, #9b59b6);
+  border-radius: 2px;
 }
 
 .card-info-section p {
-  font-size: 1.3rem;
-  margin-bottom: 20px;
-  color: #555;
+  font-size: 1.2rem;
+  margin-bottom: 30px;
+  color: #4a5568;
+  line-height: 1.6;
 }
 
 .features-list {
   list-style: none;
   padding-left: 0;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
 }
 
 .features-list li {
-  font-size: 1.2rem;
-  margin-bottom: 10px;
-  color: #333;
+  font-size: 1.1rem;
+  margin-bottom: 15px;
+  color: #2d3748;
+  position: relative;
+  padding-left: 35px;
+  line-height: 1.5;
+}
+
+.features-list li::before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: #2ecc71;
+  font-weight: bold;
+  font-size: 1.3rem;
 }
 
 .design-button {
-  padding: 16px 24px;
-  background-color: #333;
-  color: #fff;
+  padding: 18px 32px;
+  background: linear-gradient(135deg, #3498db 0%, #9b59b6 100%);
+  color: white;
   border: none;
-  border-radius: 5px;
+  border-radius: 50px;
   cursor: pointer;
-  font-size: 1rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  box-shadow: 0 10px 20px -5px rgba(52, 152, 219, 0.4);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
 }
 
 .design-button:hover {
-    background-color: #5cbdb9;
-    transition: 0.3s;
-    transform: scale(1.1)
+  transform: translateY(-3px);
+  box-shadow: 0 15px 25px -5px rgba(52, 152, 219, 0.5);
+  background: linear-gradient(135deg, #2980b9 0%, #8e44ad 100%);
 }
 
-.how-it-works-container {
-  background-color: #ccc;
-  padding: 40px 20px;
-  margin-bottom: 30px;
+.design-button:active {
+  transform: translateY(0);
+}
+
+.clients-section {
+  padding: 60px 20px;
+  background-color: white;
   text-align: center;
 }
 
-.how-it-works-heading {
-  color: #333;
+.clients-section h2 {
   font-size: 2.2rem;
+  color: #2c3e50;
   margin-bottom: 40px;
+  position: relative;
+  display: inline-block;
+}
+
+.clients-section h2::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 4px;
+  background: linear-gradient(90deg, #3498db, #9b59b6);
+  border-radius: 2px;
+}
+
+.how-it-works-container {
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  padding: 80px 20px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.how-it-works-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url('https://www.transparenttextures.com/patterns/clean-gray-paper.png');
+  opacity: 0.05;
+  z-index: 0;
+}
+
+.how-it-works-heading {
+  color: #2c3e50;
+  font-size: 2.5rem;
+  margin-bottom: 60px;
+  position: relative;
+  z-index: 1;
+}
+
+.how-it-works-heading::after {
+  content: '';
+  position: absolute;
+  bottom: -15px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 4px;
+  background: linear-gradient(90deg, #3498db, #9b59b6);
+  border-radius: 2px;
 }
 
 .how-it-works-content {
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
   flex-wrap: wrap;
+  gap: 30px;
+  position: relative;
+  z-index: 1;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .how-it-works-item {
   flex: 1;
-  max-width: 300px;
-  margin: 20px;
+  min-width: 280px;
+  max-width: 350px;
+  padding: 40px 30px;
   text-align: center;
-  background-color: white;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  background: white;
+  border-radius: 15px;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.05);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  position: relative;
+  overflow: hidden;
+}
+
+.how-it-works-item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 5px;
+  background: linear-gradient(135deg, #5757a0 0%, #384f8a 50%, #3165a4 80%);
+}
+
+.how-it-works-item:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
 }
 
 .how-it-works-image {
-  width: 100px;
-  height: 100px;
+  width: 120px;
+  height: 120px;
   border-radius: 50%;
   object-fit: cover;
-  margin-top: 10px;
-  margin-bottom: 20px;
+  margin-bottom: 25px;
+  border: 5px solid #f1f1f1;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.how-it-works-item:hover .how-it-works-image {
+  transform: scale(1.1);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
 }
 
 .how-it-works-item h3 {
-  font-size: 1.3rem;
+  font-size: 1.5rem;
   margin-bottom: 20px;
+  color: #2c3e50;
 }
 
 .how-it-works-item p {
-  font-size: 1rem;
-  color: #555;
-  padding: 10px;
+  font-size: 1.1rem;
+  color: #4a5568;
+  line-height: 1.6;
+}
+
+@media (max-width: 1024px) {
+  .design-your-card {
+    padding: 40px 20px;
+  }
+  
+  .card-info-section h2 {
+    font-size: 2rem;
+  }
+  
+  .how-it-works-item {
+    padding: 30px 20px;
+  }
 }
 
 @media (max-width: 768px) {
   .design-your-card {
-      flex-direction: column;
-      padding: 20px;
+    flex-direction: column;
+    padding: 30px 20px;
   }
 
   .card-info-section {
-      padding: 10px;
+    padding: 30px 20px;
+    text-align: center;
   }
 
-  .card-info-section {
-    text-align: start;
-  }
-
-  .design-card-image {
-      width: 90%;
-      height: auto;
-      padding: 10px;
-      margin-top: 3px;
-  }
-
-  .card-info-section h2 {
-      font-size: 1.5rem;
-      margin-top: 15px;
-  }
-
-  .card-info-section p {
-      font-size: 1.1rem;
+  .card-info-section h2::after {
+    left: 50%;
+    transform: translateX(-50%);
   }
 
   .features-list li {
-      font-size: 1rem;
+    text-align: left;
   }
 
-  .design-button {
-      font-size: 0.9rem;
-      padding: 12px 20px;
+  .design-card-image {
+    width: 100%;
+    transform: perspective(1000px) rotateY(0deg);
+    margin-bottom: 30px;
   }
 
-  .how-it-works-content {
-      flex-direction: column;
-      align-items: center;
+  .how-it-works-heading {
+    font-size: 2rem;
   }
 }
 
 @media (max-width: 480px) {
+  .card-info-section h2 {
+    font-size: 1.8rem;
+  }
+
+  .card-info-section p {
+    font-size: 1rem;
+  margin-bottom: 20px;
+  }
+
+  .features-list li {
+    font-size: 1rem;
+    padding-left: 30px;
+  }
+
+  .design-button {
+    padding: 15px 25px;
+    font-size: 1rem;
+  }
+
   .how-it-works-item {
-      max-width: 100%;
-      margin: 10px 0;
+    min-width: 100%;
   }
 
   .how-it-works-heading {
-      font-size: 1.8rem;
-  }
-
-  .how-it-works-item h3 {
-      font-size: 1.2rem;
-  }
-
-  .how-it-works-item p {
-      font-size: 0.9rem;
+    font-size: 1.8rem;
   }
 }

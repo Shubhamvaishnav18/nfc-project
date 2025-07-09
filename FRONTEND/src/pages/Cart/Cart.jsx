@@ -1,15 +1,23 @@
 import React, { useContext } from "react"
 import "./Cart.css"
 import { StoreContext } from "../../context/StoreContext"
-import { Navigate, useNavigate } from "react-router-dom";
-import axios from 'axios';
+import { useNavigate } from "react-router-dom";
 import { assets } from "../../assets/assets";
+import { toast } from 'react-toastify';
 
 const Cart = () => {
 
-  const {cartItem, card_list, removeFromCart, getTotalCartAmount, addToCart, cartItems, removeFromCart1, addItemToCart} = useContext(StoreContext);
+  const { cartItem, card_list, removeFromCart, getTotalCartAmount, addToCart, cartItems, removeFromCart1, addItemToCart } = useContext(StoreContext);
 
   const navigate = useNavigate();
+
+  const handleProceedToCheckout = () => {
+    const storedToken = localStorage.getItem("token");
+    if (!storedToken) {
+      toast.error("please signIn to proceed to checkout!");
+    }
+    navigate("/order");
+  };
 
   return (
     <div className="cart">
@@ -48,14 +56,13 @@ const Cart = () => {
           }
         })}
 
-        {/* Render the cards added to the cart */}
 
         {cartItems.map((item) => {
-          if (item && item.quantity > 0) { 
+          if (item && item.quantity > 0) {
             return (
               <div key={item._id}>
                 <div className="cart-items-title cart-items-item">
-                  
+
                   <div className="nfc-card-preview1" style={{ backgroundColor: item.cardColor }}>
                     <div className="card-content1">
                       <img src={item.logo || '/home_page.png'} alt="logo" className="card-logo1" />
@@ -74,15 +81,15 @@ const Cart = () => {
                     </div>
                   </div>
 
-                  
+
                   <p>{item.name}</p>
                   <p>₹{item.price}</p>
                   <div className="quantity-controls">
                     <button onClick={() => removeFromCart1(item)}>-</button>
-                    <p>{item.quantity}</p> 
+                    <p>{item.quantity}</p>
                     <button onClick={() => addItemToCart(item)}>+</button>
                   </div>
-                  <p>₹{item.price * item.quantity}</p> 
+                  <p>₹{item.price * item.quantity}</p>
                   <p onClick={() => removeFromCart1(item)} className="cross">x</p>
                 </div>
                 <hr />
@@ -104,15 +111,15 @@ const Cart = () => {
             <hr />
             <div className="cart-total-details">
               <p>Delivery Fee</p>
-              <p>₹{getTotalCartAmount()===0?0:100}</p>
+              <p>₹{getTotalCartAmount() === 0 ? 0 : 100}</p>
             </div>
             <hr />
             <div className="cart-total-details">
               <b>Total</b>
-              <b>₹{getTotalCartAmount()===0?0:getTotalCartAmount()+100}</b>
+              <b>₹{getTotalCartAmount() === 0 ? 0 : getTotalCartAmount() + 100}</b>
             </div>
           </div>
-          <button onClick={() => navigate("/order")}>PROCEED TO CHECKOUT</button>   
+          <button onClick={handleProceedToCheckout}>PROCEED TO CHECKOUT</button>
         </div>
       </div>
     </div>

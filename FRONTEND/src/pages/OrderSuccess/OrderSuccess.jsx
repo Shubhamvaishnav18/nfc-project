@@ -12,6 +12,7 @@ const OrderSuccess = () => {
     paymentId,
     orderId,
     amount,
+    userEmail
   } = location.state || {};
 
   const { url } = useContext(StoreContext);
@@ -37,6 +38,9 @@ const OrderSuccess = () => {
           <p><strong>Payment ID:</strong> {paymentId}</p>
           <p><strong>Order ID:</strong> {orderId}</p>
           <p><strong>Amount Paid:</strong> ₹{amount.toFixed(2)}</p>
+          <p className="email-notice">
+            A receipt has been sent to your email at <strong>{userEmail}</strong>
+          </p>
         </div>
 
         <a

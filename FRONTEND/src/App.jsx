@@ -21,6 +21,8 @@ import ProductDetail from "./pages/ProductDetail/ProductDetail.jsx";
 import PlaceOrder from "./pages/PlaceOrder/PlaceOrder"
 import ResetPassword from "./components/ResetPassword/ResetPassword.jsx";
 import OrderSuccess from "./pages/OrderSuccess/OrderSuccess.jsx";
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
 
@@ -32,6 +34,7 @@ function App() {
     <div>
     <ScrollToTop /> 
       <Slidebar />
+      <ToastContainer />
       <Navbar setShowLogin = {setShowLogin} />
       <Routes>
         <Route path="/" element={<HomePage />} />

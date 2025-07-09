@@ -2,8 +2,8 @@ import React, { useContext, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { card_list } from "../../assets/assets";
 import { StoreContext } from "../../context/StoreContext";
-import axios from 'axios';
 import "./ProductDetail.css";
+import { toast } from 'react-toastify';
 
 const ProductDetail = ({ token }) => {
   const { cardName } = useParams();
@@ -46,16 +46,9 @@ const ProductDetail = ({ token }) => {
   e.preventDefault();
   
   try {
-    // Add the product to cart
-    addToCart(card._id);
+    addToCart(card._id, formData);
+    toast.success("Card added to cart page successfully!");
     
-    // Get token from localStorage
-    const token = localStorage.getItem('token');
-    if (!token) {
-      throw new Error('Authentication token missing. Please login again.');
-    }
-
-    // Prepare form data to send to backend
     const formDataToSend = new FormData();
     formDataToSend.append('fullName', formData.name);
     formDataToSend.append('phoneNumber', formData.phone);
@@ -66,20 +59,6 @@ const ProductDetail = ({ token }) => {
       formDataToSend.append('logo', formData.logo);
     }
 
-    // Send data to backend
-    const response = await axios.post(
-      'http://localhost:4000/api/user/updateUserDetails', 
-      formDataToSend, 
-      {
-        headers: {
-          'Content-Type': 'multipart/form-data',
-          'token': token
-        }
-      }
-    );
-
-    console.log('Details updated successfully:', response.data);
-    navigate("/cart");
   } catch (error) {
     console.error("Error submitting form:", error);
     alert(error.response?.data?.message || error.message || 'Failed to update details');
@@ -155,7 +134,7 @@ const ProductDetail = ({ token }) => {
             accept="image/*"
           />
 
-          <button type="submit">Submit Details</button>
+          <button type="submit">Add to Cart</button>
         </form>
       </div>
     </div>
