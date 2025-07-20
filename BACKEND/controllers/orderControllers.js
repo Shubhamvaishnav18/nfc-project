@@ -5,11 +5,6 @@ import crypto from "crypto";
 import dotenv from 'dotenv';
 dotenv.config();
 
-//global variable
-// const currency = 'inr';
-// const deliveryCharge = 100;
-
-//gateway initialization 
 const razorpay = new Razorpay({
     key_id: process.env.RAZORPAY_KEY_ID,
     key_secret: process.env.RAZORPAY_KEY_SECRET
@@ -33,7 +28,7 @@ const placeOrder = async (req,res) => {
         await userModel.findByIdAndUpdate(req.body.userId, { cartData: {} });
 
         const options = {
-            amount: req.body.amount * 100, // Amount in paise
+            amount: req.body.amount * 100, 
             currency: "INR",
             receipt: newOrder._id.toString()
         };

@@ -5,7 +5,6 @@ import validator from "validator";
 const createContact = async (req, res) => {
     const { name, email, phone, message } = req.body;
 
-    // Validate fields
     if (!name || !email || !phone || !message) {
         return res.json({ success: false, message: "All fields are required" });
     }

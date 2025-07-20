@@ -67,7 +67,6 @@ body {
   gap: 30px;
 }
 
-/* Main sections grid - will be 2 columns on desktop */
 .cookie-main-sections {
   display: grid;
   grid-template-columns: 1fr;
@@ -86,7 +85,6 @@ body {
   overflow: hidden;
 }
 
-/* Full width section for cookie types */
 .cookie-types-section {
   grid-column: 1 / -1;
 }
@@ -221,10 +219,9 @@ body {
   box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
 }
 
-/* Tablet and larger screens */
 @media (min-width: 768px) {
   .cookie-main-sections {
-    grid-template-columns: repeat(2, 1fr); /* 2 columns for main sections */
+    grid-template-columns: repeat(2, 1fr); 
   }
   
   .cookie-header h1 {
@@ -232,14 +229,12 @@ body {
   }
 }
 
-/* Larger laptop screens */
 @media (min-width: 1024px) {
   .cookie-header h1 {
     font-size: 4rem;
   }
 }
 
-/* Mobile screens */
 @media (max-width: 767px) {
   .cookie-policy-container {
     padding: 40px 15px;
@@ -274,14 +269,12 @@ body {
   }
 }
 
-/* Adjust cookie types for medium screens */
 @media (max-width: 1023px) {
   .cookie-types {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
-/* Adjust cookie types for small screens */
 @media (max-width: 479px) {
   .cookie-types {
     grid-template-columns: 1fr;

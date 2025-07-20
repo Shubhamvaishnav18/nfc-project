@@ -21,7 +21,6 @@ body {
     background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
     color: #fff;
     z-index: 3;
-    /* border-bottom: 1px solid #6e6e6e; */
 }
 
 .Navbar .logo a {
@@ -33,8 +32,8 @@ body {
 }
 
 .Navbar .logo a:hover {
-  transform: scale(1.05);
-  filter: drop-shadow(0 4px 8px rgba(102, 126, 234, 0.3));
+    transform: scale(1.05);
+    filter: drop-shadow(0 4px 8px rgba(102, 126, 234, 0.3));
 }
 
 
@@ -47,10 +46,10 @@ body {
     display: flex;
     list-style: none;
     background: rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(10px);
-  border-radius: 50px;
-  padding: 10px 20px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 50px;
+    padding: 10px 20px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .Navbar .nav-section li {
@@ -75,55 +74,55 @@ body {
 }
 
 .Navbar .signup {
-  padding: 12px 25px;
-  font-size: 1.1rem;
-  font-weight: 600;
-  color: white;
-  background: rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(10px);
-  border-radius: 50px;
-  padding: 10px 20px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 12px 25px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: white;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border-radius: 50px;
+    padding: 10px 20px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .Navbar .signup:hover {
-  cursor: pointer;
-  background: rgba(255, 255, 255, 0.1);
-  transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
-  color: #fff;
+    cursor: pointer;
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+    color: #fff;
 }
 
 .Navbar .signup::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: linear-gradient(135deg, #764ba2, #f093fb);
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  border-radius: 25px;
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, #764ba2, #f093fb);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    border-radius: 25px;
 }
 
 .Navbar .logout {
-  font-size: 1rem;
-  font-weight: 600;
-  padding: 12px 25px;
-  background: rgba(245, 101, 101, 0.2);
-  border-radius: 25px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  border: 2px solid rgba(245, 101, 101, 0.3);
-  backdrop-filter: blur(10px);
+    font-size: 1rem;
+    font-weight: 600;
+    padding: 12px 25px;
+    background: rgba(245, 101, 101, 0.2);
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 2px solid rgba(245, 101, 101, 0.3);
+    backdrop-filter: blur(10px);
 }
 
 .Navbar .logout:hover {
-  background: rgba(245, 101, 101, 0.3);
-  transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(245, 101, 101, 0.3);
-  color: #fff;
+    background: rgba(245, 101, 101, 0.3);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(245, 101, 101, 0.3);
+    color: #fff;
 }
 
 .nav-login-cart {
@@ -132,27 +131,18 @@ body {
     gap: 20px;
 }
 
-.nav-login-cart img {
-    width: 30px;
+.cart-icon {
+    color: white;
+    font-size: 24px;
     margin-right: 20px;
     margin-top: 7px;
     cursor: pointer;
+    transition: color 0.3s;
 }
 
-/* .nav-cart-count {
-    width: 17px;
-    height: 17px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: -26px;
-    margin-left: -48px;
-    border-radius: 11px;
-    font-size: 14px;
-    background: red;
-    color: white;
-    cursor: pointer;
-} */
+.cart-icon:hover {
+    color: #f0f0f0;
+}
 
 .nav-cart-count {
     position: absolute;
@@ -167,7 +157,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-  }
+}
 
 nav {
     overflow: hidden;
@@ -232,7 +222,6 @@ nav ul li a:hover {
     display: none;
 }
 
-/* Responsive Styling */
 @media (max-width: 768px) {
     .Navbar {
         width: 100%;
@@ -240,11 +229,11 @@ nav ul li a:hover {
     }
 
     .Navbar .logo {
-       position: absolute;
-       left: 70px;
-    }  
+        position: absolute;
+        left: 70px;
+    }
 
-    .Navbar .logo a{
+    .Navbar .logo a {
         font-size: 22px;
     }
 
@@ -252,10 +241,10 @@ nav ul li a:hover {
         font-size: 18px;
     }
 
-    .Navbar .nav-section{
+    .Navbar .nav-section {
         display: none;
     }
-    
+
     .Mobile-menu {
         display: block;
         position: absolute;
@@ -269,7 +258,7 @@ nav ul li a:hover {
         margin-top: 97px;
     }
 
-    .Mobile-menu li{
+    .Mobile-menu li {
         display: block;
         text-decoration: none;
         margin: 25px 40px;
@@ -300,9 +289,24 @@ nav ul li a:hover {
     .dropdown:hover .dropdown-content {
         display: block;
     }
+
+    .logo .superscript {
+        font-size: 18px;
+    }
+
+    .Navbar .logout {
+        font-size: .9rem;
+        padding: 5px 15px;
+    }
+
+    .nav-cart-count {
+        top: 11px;
+        right: 32px;
+        padding: 1px 4px;
+        font-size: 10px;
+    }
 }
 
-/* Further optimization for smallest screens */
 @media (max-width: 576px) {
     .Navbar {
         flex-direction: row;
@@ -311,8 +315,27 @@ nav ul li a:hover {
         height: 55px;
     }
 
+    .logo .superscript {
+        font-size: 15px;
+    }
+
+    .Navbar .logout {
+        font-size: .6rem;
+        padding: 4px 11px;
+    }
+
+    .cart-icon {
+        font-size: 18px;
+    }
+
+    .nav-cart-count {
+        top: 12px;
+        right: 32px;
+        padding: 1px 3px;
+        font-size: 8px;
+    }
+
     .Mobile-menu {
         margin-top: 94px;
     }
-
 }

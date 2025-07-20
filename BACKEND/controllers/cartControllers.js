@@ -50,11 +50,8 @@ const getCart = async (req, res) => {
             });
         }
 
-        // If user is found, get cartData or use default value
-        let cartData = userData.cartData || {};  // Default to empty object if cartData is null/undefined
+        let cartData = userData.cartData || {}; 
 
-
-        // Send the cart data in the response
         res.json({ success: true, cartData });
 
     } catch (error) {
@@ -89,14 +86,12 @@ const removeFromCustomCart = async (req, res) => {
         let userData = await userModel.findById(req.body.userId);
         let customCartData = userData.customCartData || [];
 
-        // Find the item by _id
         const itemIndex = customCartData.findIndex(item => item._id === req.body.itemId);
 
         if (itemIndex !== -1) {
             if (customCartData[itemIndex].quantity > 1) {
                 customCartData[itemIndex].quantity -= 1;
             } else {
-                // Remove the item if quantity is 1
                 customCartData.splice(itemIndex, 1);
             }
         }
@@ -113,10 +108,8 @@ const removeFromCustomCart = async (req, res) => {
 //fetch customCartData
 const getCustomCart = async (req, res) => {
     try {
-        // Find user by ID
         let userData = await userModel.findById(req.body.userId);
 
-        // If no user is found, return a 404 error
         if (!userData) {
             return res.status(404).json({
                 success: false,
@@ -124,11 +117,8 @@ const getCustomCart = async (req, res) => {
             });
         }
 
-        // If user is found, get cartData or use default value
-        let customCartData = userData.customCartData || [];  // Default to empty object if cartData is null/undefined
+        let customCartData = userData.customCartData || [];  
 
-
-        // Send the cart data in the response
         res.json({ success: true, customCartData });
 
     } catch (error) {
@@ -138,26 +128,3 @@ const getCustomCart = async (req, res) => {
 }; 
 
 export {addToCart, removeFromCart, getCart, addToCustomCart, removeFromCustomCart, getCustomCart};
-
-
-
-
-
-
-//fetch custom card data
-// const getCustomCards = async (req, res) => {
-//     try {
-//       const userId = req.body.userId;
-//       const userData = await userModel.findById(userId);
-  
-//       if (!userData) {
-//         return res.status(404).json({ success: false, message: "User not found." });
-//       }
-  
-//       const customCards = userData.customCards || []; 
-//       res.json({ success: true, customCards });
-//     } catch (error) {
-//       console.error(error);
-//       res.status(500).json({ success: false, message: "Error fetching custom card data." });
-//     }
-//   };

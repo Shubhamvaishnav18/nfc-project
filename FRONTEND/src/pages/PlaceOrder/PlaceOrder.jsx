@@ -35,8 +35,8 @@ const PlaceOrder = () => {
         let itemInfo = {
           ...item,
           quantity: cartItem[item._id],
-          isCustomCard: false, // Flag to identify pre-built cards
-          cardDetails: cardDetails[item._id] || {} // Include user-entered details
+          isCustomCard: false, 
+          cardDetails: cardDetails[item._id] || {} 
         };
         console.log("cardDetails>>>>>>>>>", cardDetails);
         orderItems.push(itemInfo);
@@ -50,8 +50,8 @@ const PlaceOrder = () => {
           name: item.name,
           price: item.price,
           quantity: item.quantity,
-          isCustomCard: true, // Flag to identify custom cards
-          cardDetails: { // Include all custom card details
+          isCustomCard: true, 
+          cardDetails: { 
             title: item.title,
             subTitle: item.subTitle,
             details: item.details,
@@ -67,11 +67,10 @@ const PlaceOrder = () => {
     let orderData = {
       address: data,
       items: orderItems,
-      amount: getTotalCartAmount() + 100, // Adding delivery fee
-      userId: token, // Assuming token holds user ID
+      amount: getTotalCartAmount() + 100, 
+      userId: token, 
     };
 
-    // Make API call to backend to place the order and get Razorpay order ID
     try {
       const response = await axios.post(url + "/api/order/place", orderData, {
         headers: { token },
@@ -80,17 +79,14 @@ const PlaceOrder = () => {
       if (response.data.success) {
         const { orderId, razorpayOrderId } = response.data;
 
-        // Initiate Razorpay payment
         const options = {
-          key: import.meta.env.VITE_RAZORPAY_KEY_ID, // Using Vite environment variable
-          amount: orderData.amount, // Amount in paise
+          key: import.meta.env.VITE_RAZORPAY_KEY_ID, 
+          amount: orderData.amount, 
           currency: "INR",
-          name: "HeloTap", // Optional
+          name: "HeloTap", 
           description: "Order Payment",
-          // image: "https://your-logo-url.com", 
           order_id: razorpayOrderId,
           handler: async function (response) {
-            // Verify the payment
             const paymentData = {
               razorpayPaymentId: response.razorpay_payment_id,
               razorpayOrderId: response.razorpay_order_id,
@@ -98,7 +94,6 @@ const PlaceOrder = () => {
               orderId: orderId,
             };
 
-            // Send payment verification request to the backend
             try {
               const verifyResponse = await axios.post(url + "/api/order/verify", paymentData);
               if (verifyResponse.data.success) {
@@ -130,7 +125,7 @@ const PlaceOrder = () => {
             }
           },
           theme: {
-            color: "#F37254", // Customize Razorpay button color
+            color: "#F37254", 
           },
         };
 

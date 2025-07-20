@@ -59,7 +59,6 @@ const registerUser = async (req, res) => {
             return res.json({ success: false, message: "Please enter a strong password" });
         }
 
-        //Hashing user password
         const salt = await bcrypt.genSalt(10);
         const hashedPassword = await bcrypt.hash(password, salt);
 
@@ -89,14 +88,12 @@ export const updateUserDetails = async (req, res) => {
             });
         }
 
-        // Verify token and get user ID
         const decoded = jwt.verify(token, process.env.JWT_SECRET);
         const userId = decoded.id;
 
         const { fullName, phoneNumber, designation, company, email } = req.body;
         const logo = req.file ? req.file.path : null;
 
-        // Find user by ID
         const user = await userModel.findById(userId);
         if (!user) {
             return res.status(404).json({ 
@@ -105,7 +102,6 @@ export const updateUserDetails = async (req, res) => {
             });
         }
 
-        // Update user details
         user.userDetails = {
             fullName: fullName || user.userDetails?.fullName,
             phoneNumber: phoneNumber || user.userDetails?.phoneNumber,
@@ -159,17 +155,14 @@ export const addCustomCard = async (req, res) => {
     const userId = decoded.id;
     const cardData = req.body;
 
-    // First check if card already exists
     const user = await userModel.findById(userId);
     const existingCardIndex = user.customCartData.findIndex(
       card => card._id === cardData._id
     );
 
     if (existingCardIndex >= 0) {
-      // Update quantity if card exists
       user.customCartData[existingCardIndex].quantity += 1;
     } else {
-      // Add new card if doesn't exist
       user.customCartData.push(cardData);
     }
 

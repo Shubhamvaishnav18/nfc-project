@@ -11,11 +11,4 @@ cartRouter.post("/addcustomcard", authMiddleware, addToCustomCart);
 cartRouter.post("/removecustomcard", authMiddleware, removeFromCustomCart);
 cartRouter.post("/getcustomcard", authMiddleware, getCustomCart);
 
-
-
 export default cartRouter;
-
-
-
-
-//cartRouter.post("/getCustomCards", authMiddleware, getCustomCards);

@@ -264,7 +264,6 @@
   }
 }
 
-/* Enhanced responsive design */
 @media (max-width: 1024px) {
   .contact-container {
     flex-direction: column;
@@ -368,7 +367,6 @@
   }
 }
 
-/* Add floating animation for form */
 @keyframes float {
   0%,
   100% {
@@ -383,7 +381,6 @@
   animation: float 6s ease-in-out infinite;
 }
 
-/* Add pulse effect for contact info */
 @keyframes pulse {
   0%,
   100% {

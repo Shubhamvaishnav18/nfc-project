@@ -30,10 +30,7 @@
 .about-header, .about-mission, .about-vision, .about-team, .about-contact {
     margin-bottom: 60px;
     padding: 30px;
-    /* background: rgba(255, 255, 255, 0.7); */
     border-radius: 15px;
-    /* backdrop-filter: blur(10px); */
-    /* border: 1px solid rgba(255, 255, 255, 0.2); */
     transition: all 0.3s ease;
     position: relative;
 }
@@ -182,7 +179,6 @@
     text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
 }
 
-/* Enhanced responsive design */
 @media (max-width: 768px) {
     .about-container-about {
         padding: 30px 15px;
@@ -238,7 +234,6 @@
     }
 }
 
-/* Add subtle animations */
 @keyframes float {
     0%, 100% { transform: translateY(0px); }
     50% { transform: translateY(-10px); }

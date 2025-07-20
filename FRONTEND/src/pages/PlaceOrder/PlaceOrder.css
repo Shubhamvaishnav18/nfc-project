@@ -3,8 +3,6 @@
     align-items: start;
     justify-content: space-between;
     gap: 50px;
-    /* margin-top: 100px; */
-    /* background-color: red; */
     margin: 100px;
 }
 
@@ -40,4 +38,43 @@
 
 .place-order .cart-total button {
     margin-top: 30px;
+}
+
+@media (max-width: 1024px) {
+    .place-order {
+        flex-direction: column;
+        margin: 60px 40px;
+        gap: 40px;
+    }
+}
+
+@media (max-width: 768px) {
+    .place-order-left .title {
+        font-size: 26px;
+        margin-bottom: 30px;
+    }
+
+    .place-order {
+        margin: 40px 20px;
+    }
+
+    .place-order-left,
+    .place-order-right {
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .place-order-left .multi-fields {
+        flex-direction: column;
+    }
+
+    .place-order-left input {
+        font-size: 14px;
+        padding: 8px;
+    }
+
+    .place-order .cart-total button {
+        width: 100%;
+    }
 }

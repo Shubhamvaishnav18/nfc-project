@@ -194,7 +194,6 @@
   width: 100%;
 }
 
-/* Social Media Section */
 .social-section {
   background: linear-gradient(135deg, rgba(240, 147, 251, 0.1), rgba(245, 101, 101, 0.1));
   border: 1px solid rgba(240, 147, 251, 0.2);
@@ -277,7 +276,6 @@
   transform: scale(1.1);
 }
 
-/* Horizontal line */
 .footer hr {
   width: calc(100% - 80px);
   height: 1px;
@@ -299,7 +297,6 @@
   border-radius: 2px;
 }
 
-/* Footer Bottom */
 .footer-bottom {
   text-align: center;
   margin-top: 20px;
@@ -327,7 +324,6 @@
   transform: translateY(-2px);
 }
 
-/* Responsive Styling */
 @media (max-width: 1024px) {
   .footer-container {
     padding: 0 30px;
@@ -451,7 +447,6 @@
   }
 }
 
-/* Animation for footer sections on scroll */
 @keyframes fadeInUp {
   from {
     opacity: 0;

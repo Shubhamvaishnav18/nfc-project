@@ -4,17 +4,16 @@ import { loginUser, registerUser, updateUserDetails, addCustomCard, forgotPasswo
 
 const userRouter = express.Router();
 
-// Multer setup for file uploads
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
-      cb(null, "uploads/"); // Save files in 'uploads' directory
+      cb(null, "uploads/"); 
     },
     filename: (req, file, cb) => {
-      cb(null, Date.now() + "-" + file.originalname); // Unique file name
+      cb(null, Date.now() + "-" + file.originalname); 
     },
   });
 
-  const upload = multer({ storage });
+const upload = multer({ storage });
 
 userRouter.post("/register", registerUser);
 userRouter.post("/login", loginUser);

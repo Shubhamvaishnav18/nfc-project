@@ -1,6 +1,6 @@
 import React from 'react';
 import './Metal.css'; 
-import CardDisplay from '../../components/cardDisplay/cardDisplay';
+import CardDisplay from '../../components/CardDisplay/CardDisplay';
 
 const Metal = ({category}) => {
 

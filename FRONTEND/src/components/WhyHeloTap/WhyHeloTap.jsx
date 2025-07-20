@@ -16,7 +16,7 @@ const WhyHeloTap = () => {
           <div className="feature-item">
             <FaShareAlt className="feature-icon" />
             <h3>Share with anyone</h3>
-            <p>Recipients don’t need any app to access your profile.</p>
+            <p>Recipients don't need any app to access your profile.</p>
           </div>
 
           <div className="feature-item">
