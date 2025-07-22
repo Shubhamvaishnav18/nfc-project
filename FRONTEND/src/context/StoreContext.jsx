@@ -10,7 +10,7 @@ const StoreContextProvider = (props) => {
   const [cartItem, setCartItem] = useState({}); //for all products
   const [cartItems, setCartItems] = useState([]); //for custom card
   const [cardDetails, setCardDetails] = useState({});
-  const url = "http://localhost:4000";
+  const url = "https://nfc-project-backend.onrender.com";
   const [token, setToken] = useState("");
 
   //  for custom card design

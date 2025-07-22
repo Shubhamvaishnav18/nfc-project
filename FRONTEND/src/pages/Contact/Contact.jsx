@@ -24,7 +24,7 @@ const ContactPage = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     
-    const response = await axios.post('http://localhost:4000/api/contact/contact', formData); 
+    const response = await axios.post('https://nfc-project-backend.onrender.com/api/contact/contact', formData); 
 
     if (response.data.success) {
       toast.success("Thank you, we'll contact you soon!");
