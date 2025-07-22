@@ -13,6 +13,7 @@ const LoginPopup = ({ setShowLogin }) => {
     email: "",
     password: ""
   });
+  const [loading, setLoading] = useState(false);
 
   const onChangeHandler = (event) => {
     const { name, value } = event.target;
@@ -21,6 +22,7 @@ const LoginPopup = ({ setShowLogin }) => {
 
   const onLogin = async (event) => {
     event.preventDefault();
+    setLoading(true);
 
     let endpoint = currState === "Login"
       ? "/api/user/login"
@@ -38,15 +40,18 @@ const LoginPopup = ({ setShowLogin }) => {
     } else {
       alert(response.data.message);
     }
+    setLoading(false);
   };
 
   const onForgotPassword = async (event) => {
     event.preventDefault();
+     setLoading(true);
     const response = await axios.post(`${url}/api/user/forgot-password`, {
       email: data.email
     });
     alert(response.data.message);
     if (response.data.success) setCurrState("Login");
+    setLoading(false);
   };
 
   return (
@@ -70,9 +75,13 @@ const LoginPopup = ({ setShowLogin }) => {
         </div>
 
         {currState === "Forgot" ? (
-          <button type="submit">Send Reset Link</button>
+          <button type="submit" disabled={loading}>
+            {loading ? "Sending..." : "Send Reset Link"}
+          </button>
         ) : (
-          <button type="submit">{currState === "Sign Up" ? "Create account" : "Login"}</button>
+          <button type="submit" disabled={loading}>
+            {loading ? "Processing..." : currState === "Sign Up" ? "Create account" : "Login"}
+          </button>
         )}
 
         {currState !== "Forgot" && (

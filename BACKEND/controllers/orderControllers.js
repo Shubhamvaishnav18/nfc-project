@@ -14,7 +14,7 @@ const razorpay = new Razorpay({
 //Placing orders
 const placeOrder = async (req,res) => {
 
-    const frontend_url = "http://localhost:5173"
+    const frontend_url = "https://nfc-project-hdrf.vercel.app"
 
     try {
         const newOrder = new orderModel({

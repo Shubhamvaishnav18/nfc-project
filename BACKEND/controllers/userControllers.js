@@ -200,7 +200,7 @@ export const forgotPassword = async (req, res) => {
     user.resetPasswordExpires = expireTime;
     await user.save();
 
-    const resetLink = `http://localhost:5173/reset-password/${token}`;
+    const resetLink = `https://nfc-project-hdrf.vercel.app/reset-password/${token}`;
 
     const transporter = nodemailer.createTransport({
       service: "gmail",
