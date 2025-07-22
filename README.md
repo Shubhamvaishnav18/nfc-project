@@ -32,24 +32,7 @@ This is a full-stack e-commerce website for selling customizable NFC (Near Field
 
 📁 Project Structure
 
-nfc-project/
-├── BACKEND/ 
-│ ├── controllers/
-│ ├── models/
-│ ├── routes/
-│ ├── .env
-│ ├── server.js
-│ └── package.json
-│
-├── FRONTEND/ 
-│ ├── components/ 
-│ ├── pages/ 
-│ ├── context/
-│ ├── App.jsx
-│ ├── index.js
-│ └── package.json
-│
-└── README.md
+![Project Structure](./screenshots/project-structure.png)
 
 ---
 
